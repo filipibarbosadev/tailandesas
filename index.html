@@ -6,95 +6,427 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Camisas Premium</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">CAMISAS PREMIUM</a>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#br">Brasileiros</a></li>
-                <li class="nav-item"><a class="nav-link" href="europeus.html">Europeus</a></li>
-                <li class="nav-item"><a class="nav-link" href="selecoes.html">Seleções</a></li>
-                <li class="nav-item"><a class="nav-link text-warning" href="promocoes.html">Promoções</a></li>
-            </ul>
+
+            <a class="navbar-brand fw-bold" href="#">
+                MANTOS <span>FC</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#br">Brasileiros</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#eu">Europeus</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sel">Seleções</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link promocao" href="#promocoes">
+                            Promoções
+                        </a>
+                    </li>
+                </ul>
+
+                <a href="https://wa.me/553899928529" class="btn btn-success whatsapp-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp
+                </a>
+
+            </div>
+
         </div>
     </nav>
 
-    <header class="hero text-center text-white">
-        <div class="container">
-            <h1>Camisas Tailandesas Premium</h1>
-            <p>Qualidade 1.1</p>
-            <a href="https://wa.me/553899928529" target="_blank" class="btn btn-success btn-lg">
-                Comprar pelo WhatsApp
-            </a>
+    <header class="hero">
+        <div class="hero-overlay"></div>
+
+        <div class="container hero-content">
+
         </div>
     </header>
 
-    <section class="container py-5" id="br">
-        <h2 class="mb-4">Clubes Brasileiros</h2>
-        <div class="row g-4">
-            <div class="col-md-3 col-6">
-                <a class="text-decoration-none" href="brasileiros/atletico-mg.html">
-                    <div class="club-card">
-                        <img src="assets/logos/logo atletico.png" class="club-logo" alt="Atlético Mineiro">
-                        <h5 class="text-light">Atlético Mineiro</h5>
-                    </div>
-                </a>
+    <div class="section-divider"></div>
+
+    <section class="categories py-5">
+
+        <div class="container">
+
+            <div class="section-title">
+                <span></span>
+                <h2>Escolha uma categoria</h2>
+                <span></span>
             </div>
-            <div class="col-md-3 col-6">
-                <a class="text-decoration-none" href="brasileiros/cruzeiro.html">
-                    <div class="club-card">
-                        <img src="assets/logos/cruzeiro.png" class="club-logo" alt="Cruzeiro">
-                        <h5 class="text-light">Cruzeiro</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 col-6">
-                <a class="text-decoration-none" href="brasileiros/flamengo.html">
-                    <div class="club-card">
-                        <img src="assets/logos/flamengo.png" class="club-logo" alt="Flamengo">
-                        <h5 class="text-light">Flamengo</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 col-6">
-                <a class="text-decoration-none" href="brasileiros/palmeiras.html">
-                    <div class="club-card">
-                        <img src="assets/logos/palmeiras.png" class="club-logo" alt="palmeiras">
-                        <h5 class="text-light">Palmeiras</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 col-6">
-                <a class="text-decoration-none" href="brasileiros/corinthians.html">
-                    <div class="club-card">
-                        <img src="assets/logos/corinthians.png" class="club-logo" alt="corinthians">
-                        <h5 class="text-light">Corinthians</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 col-6">
-                <a class="text-decoration-none" href="brasileiros/vasco.html">
-                    <div class="club-card">
-                        <img src="assets/logos/vasco.png" class="club-logo" alt="vasco">
-                        <h5 class="text-light">Vasco</h5>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3 col-6">
-                <a class="text-decoration-none" href="brasileiros/sao-paulo.html">
-                    <div class="club-card">
-                        <img src="assets/logos/saopaulo.png" class="club-logo" alt="sao-paulo">
-                        <h5 class="text-light">São Paulo</h5>
-                    </div>
-                </a>
+
+            <div class="row g-4">
+
+                <div class="col-lg-3 col-md-6">
+                    <a href="#br" class="text-decoration-none">
+                        <div class="category-card">
+                            <div class="category-icon">⚽</div>
+                            <h3>Brasileiros</h3>
+                            <p>Os principais clubes do Brasil.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <a href="#eu" class="text-decoration-none">
+                        <div class="category-card">
+                            <div class="category-icon">🌍</div>
+                            <h3>Europeus</h3>
+                            <p>Os gigantes da Europa.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <a href="#sel" class="text-decoration-none">
+                        <div class="category-card">
+                            <div class="category-icon">🏆</div>
+                            <h3>Seleções</h3>
+                            <p>As maiores seleções do mundo.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <a href="#promo" class="text-decoration-none">
+                        <div class="category-card promotion">
+                            <div class="category-icon">🔥</div>
+                            <h3>Promoções</h3>
+                            <p>Ofertas por tempo limitado.</p>
+                        </div>
+                    </a>
+                </div>
+
             </div>
 
         </div>
+
     </section>
-    <footer class="bg-dark text-center text-white p-4">© Camisas Premium</footer>
+
+    <div class="section-divider"></div>
+
+    <section class="container py-5" id="br">
+
+        <div class="section-header">
+
+            <h2>⚽ Clubes Brasileiros</h2>
+
+            <a href="brasileiros/brasileiros.html" class="view-all">
+                Ver todos →
+            </a>
+
+        </div>
+
+        <div class="swiper clubesSwiper">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <a href="brasileiros/atletico-mg.html" class="text-decoration-none">
+                        <div class="club-card">
+                            <img src="assets/logos/logo atletico.png" class="club-logo">
+                            <h6>Atlético Mineiro</h6>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="brasileiros/cruzeiro.html" class="text-decoration-none">
+                        <div class="club-card">
+                            <img src="assets/logos/cruzeiro.png" class="club-logo">
+                            <h6>Cruzeiro</h6>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="brasileiros/flamengo.html" class="text-decoration-none">
+                        <div class="club-card">
+                            <img src="assets/logos/flamengo.png" class="club-logo">
+                            <h6>Flamengo</h6>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="brasileiros/palmeiras.html" class="text-decoration-none">
+                        <div class="club-card">
+                            <img src="assets/logos/palmeiras.png" class="club-logo">
+                            <h6>Palmeiras</h6>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="brasileiros/corinthians.html" class="text-decoration-none">
+                        <div class="club-card">
+                            <img src="assets/logos/corinthians.png" class="club-logo">
+                            <h6>Corinthians</h6>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="brasileiros/vasco.html" class="text-decoration-none">
+                        <div class="club-card">
+                            <img src="assets/logos/vasco.png" class="club-logo">
+                            <h6>Vasco</h6>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="brasileiros/sao-paulo.html" class="text-decoration-none">
+                        <div class="club-card">
+                            <img src="assets/logos/saopaulo.png" class="club-logo">
+                            <h6>São Paulo</h6>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="swiper-button-prev brasileiros-prev"></div>
+            <div class="swiper-button-next brasileiros-next"></div>
+            <div class="swiper-pagination brasileiros-pagination"></div>
+
+        </div>
+
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="container py-5" id="eu">
+
+        <div class="section-header">
+            <h2>🌍 Clubes Europeus</h2>
+
+            <a href="europeus/europeus.html" class="view-all">
+                Ver todos →
+            </a>
+        </div>
+
+        <div class="swiper europeusSwiper">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <a href="europeus/barcelona.html" class="text-decoration-none">
+                        <div class="club-card">
+                            <img src="assets/logos/barcelona.png" class="club-logo" alt="Barcelona">
+                            <h6>Barcelona</h6>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="europeus/realmadrid.html" class="text-decoration-none">
+                        <div class="club-card">
+                            <img src="assets/logos/realmadrid.png" class="club-logo" alt="Real Madrid">
+                            <h6>Real Madrid</h6>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="europeus/manchester-city.html" class="text-decoration-none">
+                        <div class="club-card">
+                            <img src="assets/logos/manchestercity.png" class="club-logo" alt="Manchester City">
+                            <h6>Manchester City</h6>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="europeus/liverpool.html" class="text-decoration-none">
+                        <div class="club-card">
+                            <img src="assets/logos/liverpool.png" class="club-logo" alt="Liverpool">
+                            <h6>Liverpool</h6>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="europeus/psg.html" class="text-decoration-none">
+                        <div class="club-card">
+                            <img src="assets/logos/psg.png" class="club-logo" alt="PSG">
+                            <h6>PSG</h6>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="europeus/bayern.html" class="text-decoration-none">
+                        <div class="club-card">
+                            <img src="assets/logos/bayern.png" class="club-logo" alt="Bayern">
+                            <h6>Bayern</h6>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="europeus/arsenal.html" class="text-decoration-none">
+                        <div class="club-card">
+                            <img src="assets/logos/arsenal.png" class="club-logo" alt="arsenal">
+                            <h6>Arsenal</h6>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="europeus/united.html" class="text-decoration-none">
+                        <div class="club-card">
+                            <img src="assets/logos/united.png" class="club-logo" alt="united">
+                            <h6>Manchester United</h6>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="swiper-button-prev europeus-prev"></div>
+            <div class="swiper-button-next europeus-next"></div>
+
+            <div class="swiper-pagination europeus-pagination"></div>
+
+        </div>
+
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="container py-5" id="sel">
+
+        <div class="selection-banner">
+
+            <div class="selection-content">
+
+                <span class="selection-badge">🏆 SELEÇÕES</span>
+
+                <h2>Camisas das Maiores Seleções do Mundo</h2>
+
+                <p>
+                    Brasil, Argentina, Portugal, França, Espanha e muitas outras.
+                    Veja todos os modelos disponíveis.
+                </p>
+
+                <a href="selecoes.html" class="selection-btn">
+                    Ver todas as seleções →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer class="bg-dark text-center text-white p-4">
+        © Camisas Premium
+    </footer>
 </body>
+<!-- Seu JavaScript -->
+<script>
+    const swiper = new Swiper(".clubesSwiper", {
+
+        loop: true,
+
+        speed: 700,
+
+        spaceBetween: 25,
+
+        autoplay: {
+            delay: 3500,
+            disableOnInteraction: false,
+        },
+
+        navigation: {
+            nextEl: ".brasileiros-next",
+            prevEl: ".brasileiros-prev",
+        },
+
+        pagination: {
+            el: ".brasileiros-pagination",
+            clickable: true,
+        },
+
+        breakpoints: {
+            0: {
+                slidesPerView: 2,
+                spaceBetween: 15
+            },
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 20
+            },
+            1200: {
+                slidesPerView: 6,
+                spaceBetween: 25
+            }
+        }
+
+    });
+
+    const swiperEuropeus = new Swiper(".europeusSwiper", {
+
+        loop: true,
+
+        speed: 700,
+
+        spaceBetween: 25,
+
+        autoplay: {
+            delay: 3500,
+            disableOnInteraction: false,
+        },
+
+        navigation: {
+            nextEl: ".europeus-next",
+            prevEl: ".europeus-prev",
+        },
+
+        pagination: {
+            el: ".europeus-pagination",
+            clickable: true,
+        },
+
+        breakpoints: {
+            0: {
+                slidesPerView: 2,
+                spaceBetween: 15
+            },
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 20
+            },
+            1200: {
+                slidesPerView: 6,
+                spaceBetween: 25
+            }
+        }
+
+    });
+</script>
 
 </html>
