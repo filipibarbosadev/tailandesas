@@ -1,0 +1,190 @@
+body {
+    background: #111;
+    color: #fff
+}
+
+.hero {
+    padding: 90px 20px;
+    background: linear-gradient(135deg, #111, #1d5f39);
+}
+
+.club-card {
+    background: #1d1d1d;
+    border: 1px solid #333;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    transition: .3s
+}
+
+.club-card:hover {
+    transform: translateY(-6px);
+    border-color: #28a745
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    background: #2d2d2d;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 32px;
+    font-weight: bold
+}
+
+img {
+    max-width: 100%
+}
+
+.club-logo{
+    width:100px;
+    height:100px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 15px;
+    transition:.3s;
+}
+
+.club-card:hover .club-logo{
+    transform:scale(1.08);
+}
+
+.camisa-card{
+    background:#222;
+    height:350px;
+    border-radius:12px;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.camisa-img{
+    width:100%;
+    height:100%;
+    object-fit:cover; /* ou contain */
+    transition:.3s;
+}
+
+.camisa-card:hover .camisa-img{
+    transform:scale(1.08);
+}
+
+.produto-card{
+
+    background:#1b1b1b;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:0 0 20px rgba(0,0,0,.4);
+
+    transition:.3s;
+
+}
+
+.produto-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.produto-img{
+
+    width:100%;
+
+    height:420px;
+
+    object-fit:contain;
+
+    background:#fff;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+}
+
+.produto-img:hover{
+
+    transform:scale(1.05);
+
+}
+
+.produto-info{
+
+    padding:20px;
+
+}
+
+.produto-info h4{
+
+    color:#fff;
+
+    margin-bottom:10px;
+
+}
+
+.descricao{
+
+    color:#bdbdbd;
+
+    font-size:14px;
+
+}
+
+.preco{
+
+    margin-top:15px;
+
+    font-size:28px;
+
+    color:#00e676;
+
+    font-weight:bold;
+
+}
+
+.tamanhos{
+
+    margin-top:10px;
+
+    color:#fff;
+
+    font-weight:bold;
+
+}
+
+.btn-comprar{
+
+    margin-top:20px;
+
+    display:block;
+
+    text-align:center;
+
+    background:#25D366;
+
+    color:white;
+
+    padding:12px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+.btn-comprar:hover{
+
+    background:#1faa52;
+
+    color:white;
+
+}
