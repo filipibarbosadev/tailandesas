@@ -3,11 +3,6 @@ body {
     color: #fff
 }
 
-.hero {
-    padding: 90px 20px;
-    background: linear-gradient(135deg, #111, #1d5f39);
-}
-
 .club-card {
     background: #1d1d1d;
     border: 1px solid #333;
