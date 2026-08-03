@@ -1,105 +1,493 @@
 <!DOCTYPE html>
-<html lang='pt-BR'>
+<html lang="pt-BR">
 
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
-    <link href='../css/style.css' rel='stylesheet'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cruzeiro</title>
+
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            background: #f3f3f3;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .tab-btn:hover {
+            background: #ddd;
+        }
+
+        .tab-btn.active {
+            background: #000;
+            color: #fff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <div style='max-width:1100px;margin:auto;padding:40px'>
+
+    <div class="container">
+
         <h1>Cruzeiro</h1>
-        <div style='display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px'>
-            <div class="produto-card">
 
-                <a href="../assets/camisas/CRUZEIRO 26-27 HOME.jpg" target="_blank">
-                    <img src="../assets/camisas/CRUZEIRO 26-27 HOME.jpg" alt="Camisa Atlético Mineiro 2025"
-                        class="produto-img">
-                </a>
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="abrirTab('torcedor', this)">
+                Versão Torcedor
+            </button>
 
-                <div class="produto-info">
+            <button class="tab-btn" onclick="abrirTab('retro', this)">
+                Retrô
+            </button>
 
-                    <h4>Cruzeiro Home 2026/27</h4>
+            <button class="tab-btn" onclick="abrirTab('feminina', this)">
+                Feminina
+            </button>
 
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
+            <button class="tab-btn" onclick="abrirTab('infantil', this)">
+                Infantil
+            </button>
+        </div>
 
-                    <div class="preco">
-                        R$ <span>119,90</span>
+        <!-- =======================
+             VERSÃO TORCEDOR
+        ======================== -->
+
+        <div id="torcedor" class="tab-content active">
+
+            <div class="produtos-grid">
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/Cruzeiro2627home.jpg" target="_blank">
+                        <img src="../assets/camisas/Cruzeiro2627home.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Cruzeiro Home 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
                     </div>
 
-                    <div class="tamanhos">
-                        M • G • GG
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/cruzeiro2627away.jpg" target="_blank">
+                        <img src="../assets/camisas/cruzeiro2627away.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Cruzeiro Away 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
                     </div>
 
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/Cruzeiro2627treino.jpg" target="_blank">
+                        <img src="../assets/camisas/Cruzeiro2627treino.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Cruzeiro Treino 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/cruzeiro2627treinodarkblue.jpg" target="_blank">
+                        <img src="../assets/camisas/cruzeiro2627treinodarkblue.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Cruzeiro Treino Azul Escuro 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/cruzeiro2627treinopolo.jpg" target="_blank">
+                        <img src="../assets/camisas/cruzeiro2627treinopolo.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Cruzeiro Polo Treino 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/Cruzeiro2627treinoregata.jpg" target="_blank">
+                        <img src="../assets/camisas/Cruzeiro2627treinoregata.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Cruzeiro Treino Regata Azul Escuro 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/cruzeiro2627treinoregataazul.jpg" target="_blank">
+                        <img src="../assets/camisas/cruzeiro2627treinoregataazul.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Cruzeiro Treino Regata 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/cruzeirogoleiro.jpg" target="_blank">
+                        <img src="../assets/camisas/cruzeirogoleiro.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Cruzeiro Goleiro 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
-            <div class="produto-card">
-
-                <a href="../assets/camisas/CRUZEIRO 26-27 TREINO.jpg" target="_blank">
-                    <img src="../assets/camisas/CRUZEIRO 26-27 TREINO.jpg" alt="Camisa Atlético Mineiro 2025"
-                        class="produto-img">
-                </a>
-
-                <div class="produto-info">
-
-                    <h4> Cruzeiro Treino 2026/27</h4>
-
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
-
-                    <div class="preco">
-                        R$ <span>119,90</span>
-                    </div>
-
-                    <div class="tamanhos">
-                        M • G • GG
-                    </div>
-
-
-                </div>
-
-            </div>
-
-                        <div class="produto-card">
-
-                <a href="../assets/camisas/CRUZEIRO 25-26 HOME.png" target="_blank">
-                    <img src="../assets/camisas/CRUZEIRO 25-26 HOME.png" alt="Camisa Atlético Mineiro 2025"
-                        class="produto-img">
-                </a>
-
-                <div class="produto-info">
-
-                    <h4> Cruzeiro Home 2025/26</h4>
-
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
-
-                    <div class="preco">
-                        R$ <span>99,90</span>
-                    </div>
-
-                    <div class="tamanhos">
-                        P • G • GG • 2XL • 3XL
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
 
         </div>
-        <p><a href='../index.html' style='color:#6f6'>← Voltar</a></p>
+
+        <!-- =======================
+             RETRÔ
+        ======================== -->
+
+        <div id="retro" class="tab-content">
+
+            <div class="produtos-grid">
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/cruzeiroretro93home.jpg" target="_blank">
+                        <img src="../assets/camisas/cruzeiroretro93home.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4> Cruzeiro Retrô 1993 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/cruzeiroretro93away.jpeg" target="_blank">
+                        <img src="../assets/camisas/cruzeiroretro93away.jpeg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Cruzeiro Retrô 1993 Away</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/cruzeiroretrogoleiro2014.jpg" target="_blank">
+                        <img src="../assets/camisas/cruzeiroretrogoleiro2014.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Cruzeiro Retrô 2014 Goleiro</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/Cruzeiroretro2011.jpg" target="_blank">
+                        <img src="../assets/camisas/Cruzeiroretro2011.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Cruzeiro Retrô 2011</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =======================
+             FEMININA
+        ======================== -->
+
+        <div id="feminina" class="tab-content">
+
+            <div class="produtos-grid">
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/cruzeirofemininahome.jpg" target="_blank">
+                        <img src="../assets/camisas/cruzeirofemininahome.jpg"
+                            class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Cruzeiro Feminina 2026/27 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/cruzeirofemininaaway.jpg" target="_blank">
+                        <img src="../assets/camisas/cruzeirofemininaaway.jpg" 
+                            class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Cruzeiro Feminina 2026/27 Away</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =======================
+             INFANTIL
+        ======================== -->
+
+        <div id="infantil" class="tab-content">
+
+            <div class="produtos-grid">
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/kitinfantilcruzeiro.jpg" target="_blank">
+                        <img src="../assets/camisas/kitinfantilcruzeiro.jpg"
+                            class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Kit Infantil Cruzeiro 2026/27 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>139,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <p style="margin-top:40px;">
+            <a href="../index.html" style="color:#6f6;">← Voltar</a>
+        </p>
+
     </div>
+
+    <script>
+        function abrirTab(id, botao) {
+
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(id).classList.add('active');
+            botao.classList.add('active');
+        }
+    </script>
+
 </body>
 
 </html>

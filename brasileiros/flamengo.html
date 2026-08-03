@@ -1,129 +1,648 @@
 <!DOCTYPE html>
-<html lang='pt-BR'>
+<html lang="pt-BR">
 
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
-    <link href='../css/style.css' rel='stylesheet'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Flamengo</title>
+
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            background: #f3f3f3;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .tab-btn:hover {
+            background: #ddd;
+        }
+
+        .tab-btn.active {
+            background: #000;
+            color: #fff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <div style='max-width:1100px;margin:auto;padding:40px'>
+
+    <div class="container">
+
         <h1>Flamengo</h1>
-        <div style='display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px'>
-            <div class="produto-card">
 
-                <a href="../assets/camisas/FLAMENGO 26-27 HOME.jpg" target="_blank">
-                    <img src="../assets/camisas/FLAMENGO 26-27 HOME.jpg" class="produto-img">
-                </a>
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="abrirTab('torcedor', this)">
+                Versão Torcedor
+            </button>
 
-                <div class="produto-info">
+            <button class="tab-btn" onclick="abrirTab('retro', this)">
+                Retrô
+            </button>
 
-                    <h4>Flamengo Home 2026/27</h4>
+            <button class="tab-btn" onclick="abrirTab('feminina', this)">
+                Feminina
+            </button>
 
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
+            <button class="tab-btn" onclick="abrirTab('infantil', this)">
+                Infantil
+            </button>
+        </div>
 
-                    <div class="preco">
-                        R$ <span>119,90</span>
+        <!-- =======================
+             VERSÃO TORCEDOR
+        ======================== -->
+
+        <div id="torcedor" class="tab-content active">
+
+            <div class="produtos-grid">
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/FLAMENGO 26-27 HOME.jpg" target="_blank">
+                        <img src="../assets/camisas/FLAMENGO 26-27 HOME.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Home 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
                     </div>
 
-                    <div class="tamanhos">
-                       P • M • G • GG
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/FLAMENGO 26-27 AWAY.jpg" target="_blank">
+                        <img src="../assets/camisas/FLAMENGO 26-27 AWAY.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Away 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
                     </div>
 
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/FLAMENGO 26-27 TREINO.jpg" target="_blank">
+                        <img src="../assets/camisas/FLAMENGO 26-27 TREINO.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Treino 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/FLAMENGO 26-27 TREINO II.jpg" target="_blank">
+                        <img src="../assets/camisas/FLAMENGO 26-27 TREINO II.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Treino II 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/flamengoprejogo.jpg" target="_blank">
+                        <img src="../assets/camisas/flamengoprejogo.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flaemengo Pré Jogo 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/flamengogoleiro.jpg" target="_blank">
+                        <img src="../assets/camisas/flamengogoleiro.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Goleiro 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
-            <div class="produto-card">
-
-                <a href="../assets/camisas/FLAMENGO 26-27 AWAY.jpg" target="_blank">
-                    <img src="../assets/camisas/FLAMENGO 26-27 AWAY.jpg" class="produto-img">
-                </a>
-
-                <div class="produto-info">
-
-                    <h4> Flamengo Away 2026/27</h4>
-
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
-
-                    <div class="preco">
-                        R$ <span>119,90</span>
-                    </div>
-
-                    <div class="tamanhos">
-                      P •  M • G • GG • 2XL
-                    </div>
-
-
-                </div>
-
-            </div>
-
-            <div class="produto-card">
-
-                <a href="../assets/camisas/FLAMENGO 26-27 TREINO II.jpg" target="_blank">
-                    <img src="../assets/camisas/FLAMENGO 26-27 TREINO II.jpg" class="produto-img">
-                </a>
-
-                <div class="produto-info">
-
-                    <h4> Flamengo Treino Comissão 2026/27</h4>
-
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
-
-                    <div class="preco">
-                        R$ <span>119,90</span>
-                    </div>
-
-                    <div class="tamanhos">
-                        P • M • G • GG • 2XL
-                    </div>
-
-
-                </div>
-
-            </div>
-
-            <div class="produto-card">
-
-                <a href="../assets/camisas/FLAMENGO 26-27 TREINO.jpg" target="_blank">
-                    <img src="../assets/camisas/FLAMENGO 26-27 TREINO.jpg" class="produto-img">
-                </a>
-
-                <div class="produto-info">
-
-                    <h4> Flamengo Treino 2026/27</h4>
-
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
-
-                    <div class="preco">
-                        R$ <span>119,90</span>
-                    </div>
-
-                    <div class="tamanhos">
-                        P • M • G • GG • 2XL
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
 
         </div>
-        <p><a href='../index.html' style='color:#6f6'>← Voltar</a></p>
+
+        <!-- =======================
+             RETRÔ
+        ======================== -->
+
+        <div id="retro" class="tab-content">
+
+            <div class="produtos-grid">
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/flamengo2019.jpeg" target="_blank">
+                        <img src="../assets/camisas/flamengo2019.jpeg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4> Flamengo Retrô 2019 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                                <div class="produto-card">
+
+                    <a href="../assets/camisas/Flamengo 2013.jpg" target="_blank">
+                        <img src="../assets/camisas/Flamengo 2013.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4> Flamengo Retrô 2013</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/flamengo2010.jpeg" target="_blank">
+                        <img src="../assets/camisas/flamengo2010.jpeg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Retrô 2010</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/Flamengo2009.jpg" target="_blank">
+                        <img src="../assets/camisas/Flamengo2009.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Retrô 2009</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/flamengo 2008-09.jpg" target="_blank">
+                        <img src="../assets/camisas/flamengo 2008-09.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Retrô 2008</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/flamengo2003.jpg" target="_blank">
+                        <img src="../assets/camisas/flamengo2003.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Retrô 2003 Away</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/flamengo2001.jpg" target="_blank">
+                        <img src="../assets/camisas/flamengo2001.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Retrô 2001</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                                <div class="produto-card">
+
+                    <a href="../assets/camisas/Flamengo2000.jpg" target="_blank">
+                        <img src="../assets/camisas/Flamengo2000.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Retrô 2000</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/Flamengo 99 third.jpeg" target="_blank">
+                        <img src="../assets/camisas/Flamengo 99 third.jpeg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Retrô 1999</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/flamengo95.jpg" target="_blank">
+                        <img src="../assets/camisas/flamengo95.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Retrô 1995</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/flamengo87.jpeg" target="_blank">
+                        <img src="../assets/camisas/flamengo87.jpeg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Retrô 1987</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                                <div class="produto-card">
+
+                    <a href="../assets/camisas/Flamengo1981.jpg" target="_blank">
+                        <img src="../assets/camisas/Flamengo1981.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Retrô 1981</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <!-- =======================
+             FEMININA
+        ======================== -->
+
+        <div id="feminina" class="tab-content">
+
+            <div class="produtos-grid">
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/flamengofemininahome.jpg" target="_blank">
+                        <img src="../assets/camisas/flamengofemininahome.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Feminina 2026/27 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/flamengoaway.jpg" target="_blank">
+                        <img src="../assets/camisas/flamengoaway.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Flamengo Feminina 2026/27 Away</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =======================
+             INFANTIL
+        ======================== -->
+
+        <div id="infantil" class="tab-content">
+
+            <div class="produtos-grid">
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/flamengokids.jpg" target="_blank">
+                        <img src="../assets/camisas/flamengokids.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Kit Infantil Flamengo 2026/27 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>139,90</span>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+
+                                <div class="produto-card">
+
+                    <a href="../assets/camisas/flamengokidsaway.jpg" target="_blank">
+                        <img src="../assets/camisas/flamengokidsaway.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Kit Infantil Flamengo 2026/27 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>139,90</span>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <p style="margin-top:40px;">
+            <a href="../index.html" style="color:#6f6;">← Voltar</a>
+        </p>
+
     </div>
+
+    <script>
+        function abrirTab(id, botao) {
+
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(id).classList.add('active');
+            botao.classList.add('active');
+        }
+    </script>
+
 </body>
 
 </html>

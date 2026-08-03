@@ -1,180 +1,652 @@
 <!DOCTYPE html>
-<html lang='pt-BR'>
+<html lang="pt-BR">
 
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
-    <link href='../css/style.css' rel='stylesheet'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Corinthians</title>
+
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            background: #f3f3f3;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .tab-btn:hover {
+            background: #ddd;
+        }
+
+        .tab-btn.active {
+            background: #000;
+            color: #fff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <div style='max-width:1100px;margin:auto;padding:40px'>
+
+    <div class="container">
+
         <h1>Corinthians</h1>
-        <div style='display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px'>
-            <div class="produto-card">
 
-                <a href="../assets/camisas/CORINTHIANS 26-27 HOME.jpg" target="_blank">
-                    <img src="../assets/camisas/CORINTHIANS 26-27 HOME.jpg" class="produto-img">
-                </a>
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="abrirTab('torcedor', this)">
+                Versão Torcedor
+            </button>
 
-                <div class="produto-info">
+            <button class="tab-btn" onclick="abrirTab('retro', this)">
+                Retrô
+            </button>
 
-                    <h4>Corinthians Home 2026/27</h4>
+            <button class="tab-btn" onclick="abrirTab('feminina', this)">
+                Feminina
+            </button>
 
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
+            <button class="tab-btn" onclick="abrirTab('infantil', this)">
+                Infantil
+            </button>
+        </div>
 
-                    <div class="preco">
-                        R$ <span>119,90</span>
+        <!-- =======================
+             VERSÃO TORCEDOR
+        ======================== -->
+
+        <div id="torcedor" class="tab-content active">
+
+            <div class="produtos-grid">
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/CORINTHIANS 26-27 HOME.jpg" target="_blank">
+                        <img src="../assets/camisas/CORINTHIANS 26-27 HOME.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Corinthians Home 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
                     </div>
-
-                    <div class="tamanhos">
-                        P • M • G • GG
-                    </div>
-
 
                 </div>
 
-            </div>
-            <div class="produto-card">
+                <div class="produto-card">
 
-                <a href="../assets/camisas/corinthiansaway.png" target="_blank">
-                    <img src="../assets/camisas/corinthiansaway.png" class="produto-img">
-                </a>
+                    <a href="../assets/camisas/corinthiansaway.png" target="_blank">
+                        <img src="../assets/camisas/corinthiansaway.png" class="produto-img">
+                    </a>
 
-                <div class="produto-info">
+                    <div class="produto-info">
 
-                    <h4>Corinthians Away 2026/27</h4>
+                        <h4>Corinthians Away 2026/27</h4>
 
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
 
-                    <div class="preco">
-                        R$ <span>119,90</span>
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
                     </div>
-
-                    <div class="tamanhos">
-                        P • M • GG • 2XL
-                    </div>
-
 
                 </div>
 
-            </div>
-            <div class="produto-card">
+                <div class="produto-card">
 
-                <a href="../assets/camisas/CORINTHIANS 26-27 PRE MATCH.jpg" target="_blank">
-                    <img src="../assets/camisas/CORINTHIANS 26-27 PRE MATCH.jpg" class="produto-img">
-                </a>
+                    <a href="../assets/camisas/CORINTHIANS 2026-27 TREINO.webp" target="_blank">
+                        <img src="../assets/camisas/CORINTHIANS 2026-27 TREINO.webp" class="produto-img">
+                    </a>
 
-                <div class="produto-info">
+                    <div class="produto-info">
 
-                    <h4> Corinthians Pré Jogo 2026/27</h4>
+                        <h4>Corinthians Treino 2026/27</h4>
 
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
 
-                    <div class="preco">
-                        R$ <span>119,90</span>
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
                     </div>
-
-                    <div class="tamanhos">
-                        P • M • G • GG • 2XL
-                    </div>
-
 
                 </div>
 
-            </div>
-            <div class="produto-card">
+                <div class="produto-card">
 
-                <a href="../assets/camisas/CORINTHIANS 2026-27 TREINO.webp" target="_blank">
-                    <img src="../assets/camisas/CORINTHIANS 2026-27 TREINO.webp" class="produto-img">
-                </a>
+                    <a href="../assets/camisas/CORINTHIANS 26-27 PRE MATCH.jpg" target="_blank">
+                        <img src="../assets/camisas/CORINTHIANS 26-27 PRE MATCH.jpg" class="produto-img">
+                    </a>
 
-                <div class="produto-info">
+                    <div class="produto-info">
 
-                    <h4> Corinthians Treino 2026/27</h4>
+                        <h4>Corinthians Pré Jogo 2026/27</h4>
 
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
 
-                    <div class="preco">
-                        R$ <span>119,90</span>
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
                     </div>
 
-                    <div class="tamanhos">
-                        P • M • G • GG • 2XL
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/CORINTHIANS 25-26 THIRD.jpg" target="_blank">
+                        <img src="../assets/camisas/CORINTHIANS 25-26 THIRD.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Corinthians Third 2025/26</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
                     </div>
 
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/corinthians goleiro cinza.png" target="_blank">
+                        <img src="../assets/camisas/corinthians goleiro cinza.png" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Corinthians Goleiro Cinza 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
 
                 </div>
 
-            </div>
 
-        
-        <div class="produto-card">
+                <div class="produto-card">
 
-            <a href="../assets/camisas/CORINTHIANS 25-26 THIRD.jpg" target="_blank">
-                <img src="../assets/camisas/CORINTHIANS 25-26 THIRD.jpg" class="produto-img">
-            </a>
+                    <a href="../assets/camisas/corinthiansgoleiro.jpg" target="_blank">
+                        <img src="../assets/camisas/corinthiansgoleiro.jpg" class="produto-img">
+                    </a>
 
-            <div class="produto-info">
+                    <div class="produto-info">
 
-                <h4> Corinthians Third 2025/26</h4>
+                        <h4>Corinthians Goleiro 2026/27</h4>
 
-                <p class="descricao">
-                    Camisa Tailandesa 1.1.
-                </p>
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
 
-                <div class="preco">
-                    R$ <span>119,90</span>
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
                 </div>
-
-                <div class="tamanhos">
-                    M • G • GG
-                </div>
-
 
             </div>
 
         </div>
 
-        <div class="produto-card">
+        <!-- =======================
+             RETRÔ
+        ======================== -->
 
-            <a href="../assets/camisas/CORINTHIANS 2025 TREINO.png" target="_blank">
-                <img src="../assets/camisas/CORINTHIANS 2025 TREINO.png" class="produto-img">
-            </a>
+        <div id="retro" class="tab-content">
 
-            <div class="produto-info">
+            <div class="produtos-grid">
 
-                <h4> Corinthians Treino 2025/26</h4>
+                <div class="produto-card">
+                    <a href="../assets/camisas/corinthians 2014 away.jpg" target="_blank">
+                        <img src="../assets/camisas/corinthians 2014 away.jpg" class="produto-img">
+                    </a>
 
-                <p class="descricao">
-                    Camisa Tailandesa 1.1.
-                </p>
+                    <div class="produto-info">
+                        <h4>Corinthians 2014 Away</h4>
 
-                <div class="preco">
-                    R$ <span>99,90</span>
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="tamanhos">
-                     P • M • G • GG • 2XL
+                <div class="produto-card">
+                    <a href="../assets/camisas/corinthians12home.jpg" target="_blank">
+                        <img src="../assets/camisas/corinthians12home.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+                        <h4>Corinthians 2012 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+                    </div>
                 </div>
 
+                <div class="produto-card">
+                    <a href="../assets/camisas/corinthians2011third.jpg" target="_blank">
+                        <img src="../assets/camisas/corinthians2011third.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+                        <h4>Corinthians 2011 Third</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/camisas/corinthians10.jpg" target="_blank">
+                        <img src="../assets/camisas/corinthians10.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+                        <h4>Corinthians 2010 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/camisas/corinthians2009.png" target="_blank">
+                        <img src="../assets/camisas/corinthians2009.png" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+                        <h4>Corinthians 2009 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/camisas/corinthians2006.png" target="_blank">
+                        <img src="../assets/camisas/corinthians2006.png" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+                        <h4>Corinthians 2006 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/camisas/corinthians2005.png" target="_blank">
+                        <img src="../assets/camisas/corinthians2005.png" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+                        <h4>Corinthians 2005 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/camisas/corinthians 2002 away.jpg" target="_blank">
+                        <img src="../assets/camisas/corinthians 2002 away.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+                        <h4>Corinthians 2002 Away</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/camisas/corinthians2002.jpg" target="_blank">
+                        <img src="../assets/camisas/corinthians2002.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+                        <h4>Corinthians 2002 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/camisas/corinthians2000away.jpg" target="_blank">
+                        <img src="../assets/camisas/corinthians2000away.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+                        <h4>Corinthians 2000 Away</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/camisas/corinthians2000.jpg" target="_blank">
+                        <img src="../assets/camisas/corinthians2000.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+                        <h4>Corinthians 2000 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/camisas/corinthians1999home.jpg" target="_blank">
+                        <img src="../assets/camisas/corinthians1999home.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+                        <h4>Corinthians 1999 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/camisas/corinthians1999.jpg" target="_blank">
+                        <img src="../assets/camisas/corinthians1999.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+                        <h4>Corinthians 1999</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/camisas/corinthians1990.jpg" target="_blank">
+                        <img src="../assets/camisas/corinthians1990.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+                        <h4>Corinthians 1990</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/camisas/corinthianscentenario.jpg" target="_blank">
+                        <img src="../assets/camisas/corinthianscentenario.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+                        <h4>Corinthians Centenário</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
         </div>
 
+        <!-- =======================
+             FEMININA
+        ======================== -->
+
+        <div id="feminina" class="tab-content">
+
+            <div class="produtos-grid">
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/corinthiansfemininahome.jpg" target="_blank">
+                        <img src="../assets/camisas/corinthiansfemininahome.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Corinthians Feminina 2026/27 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/Corinthiansfemininaaway.jpg" target="_blank">
+                        <img src="../assets/camisas/Corinthiansfemininaaway.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Corinthians Feminina 2026/27 Away</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =======================
+             INFANTIL
+        ======================== -->
+
+        <div id="infantil" class="tab-content">
+
+            <div class="produtos-grid">
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/kidsaway.jpg" target="_blank">
+                        <img src="../assets/camisas/kidsaway.jpg" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Kit Infantil Corinthians 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>139,90</span>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <p style="margin-top:40px;">
+            <a href="../index.html" style="color:#6f6;">← Voltar</a>
+        </p>
+
     </div>
-    <p><a href='../index.html' style='color:#6f6'>← Voltar</a></p>
-    </div>
+
+    <script>
+        function abrirTab(id, botao) {
+
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(id).classList.add('active');
+            botao.classList.add('active');
+        }
+    </script>
+
 </body>
 
 </html>

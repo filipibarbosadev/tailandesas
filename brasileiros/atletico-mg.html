@@ -1,77 +1,551 @@
 <!DOCTYPE html>
-<html lang='pt-BR'>
+<html lang="pt-BR">
 
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
-    <link href='../css/style.css' rel='stylesheet'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Atlético Mineiro</title>
+
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            background: #f3f3f3;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .tab-btn:hover {
+            background: #ddd;
+        }
+
+        .tab-btn.active {
+            background: #000;
+            color: #fff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <div style='max-width:1100px;margin:auto;padding:40px'>
+
+    <div class="container">
+
         <h1>Atlético Mineiro</h1>
-        <div style='display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px'>
-            <div class="produto-card">
 
-                <a href="../assets/camisas/ATLETICO MINEIRO 26-27 HOME.jpg" target="_blank">
-                    <img src="../assets/camisas/ATLETICO MINEIRO 26-27 HOME.jpg" alt="Camisa Atlético Mineiro 2025"
-                        class="produto-img">
-                </a>
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="abrirTab('torcedor', this)">
+                Versão Torcedor
+            </button>
 
-                <div class="produto-info">
+            <button class="tab-btn" onclick="abrirTab('retro', this)">
+                Retrô
+            </button>
 
-                    <h4>Atlético Mineiro Home 2026/27</h4>
+            <button class="tab-btn" onclick="abrirTab('feminina', this)">
+                Feminina
+            </button>
 
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
+            <button class="tab-btn" onclick="abrirTab('infantil', this)">
+                Infantil
+            </button>
+        </div>
 
-                    <div class="preco">
-                        R$ <span>119,90</span>
+        <!-- =======================
+             VERSÃO TORCEDOR
+        ======================== -->
+
+        <div id="torcedor" class="tab-content active">
+
+            <div class="produtos-grid">
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/ATLETICO MINEIRO 26-27 HOME.jpg" target="_blank">
+                        <img src="../assets/camisas/ATLETICO MINEIRO 26-27 HOME.jpg" alt="Atlético Mineiro Home 2026/27"
+                            class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Atlético Mineiro Home 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
                     </div>
 
-                    <div class="tamanhos">
-                        P • M • G • GG • 2XL
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticomg2627homesempatrocinio.jpg" target="_blank">
+                        <img src="../assets/camisas/atleticomg2627homesempatrocinio.jpg"
+                            alt="Atlético Mineiro Home Sem Patrocínio" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Atlético Mineiro Home 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
                     </div>
 
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticomineiro2627away.jpg" target="_blank">
+                        <img src="../assets/camisas/atleticomineiro2627away.jpg" alt="Atlético Mineiro Away 2026/27"
+                            class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Atlético Mineiro Away 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticomg2627awaysempatrocinio.jpg" target="_blank">
+                        <img src="../assets/camisas/atleticomg2627awaysempatrocinio.jpg"
+                            alt="Atlético Mineiro Away 2026/27" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Atlético Mineiro Away 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticomineiro2627prejogo.jpg" target="_blank">
+                        <img src="../assets/camisas/atleticomineiro2627prejogo.jpg"
+                            alt="Atlético Mineiro Treino 2026/27" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Atlético Mineiro Treino 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticomineiro2627treino.png" target="_blank">
+                        <img src="../assets/camisas/atleticomineiro2627treino.png" alt="Atlético Mineiro Treino 2026/27"
+                            class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Atlético Mineiro Treino 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticomineiroregatatreino.png" target="_blank">
+                        <img src="../assets/camisas/atleticomineiroregatatreino.png"
+                            alt="Atlético Mineiro Treino 2026/27" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Atlético Mineiro Treino 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticomineirotreino26-27black.jpg" target="_blank">
+                        <img src="../assets/camisas/atleticomineirotreino26-27black.jpg"
+                            alt="Atlético Mineiro Treino 2026/27" class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Atlético Mineiro Treino 2026/27</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
-            <div class="produto-card">
-
-                <a href="../assets/camisas/ATLETICO MINEIRO 25-26 TREINO.jpg" target="_blank">
-                    <img src="../assets/camisas/ATLETICO MINEIRO 25-26 TREINO.jpg" alt="Camisa Atlético Mineiro 2025"
-                        class="produto-img">
-                </a>
-
-                <div class="produto-info">
-
-                    <h4>Atlético Mineiro Treino 2025</h4>
-
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
-
-                    <div class="preco">
-                        R$ <span>89,90</span>
-                    </div>
-
-                    <div class="tamanhos">
-                        P • M • G • GG • 2XL • 3XL • 4XL
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
 
         </div>
-        <p><a href='../index.html' style='color:#6f6'>← Voltar</a></p>
+
+        <!-- =======================
+             RETRÔ
+        ======================== -->
+
+        <div id="retro" class="tab-content">
+
+            <div class="produtos-grid">
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticomineiroretro2008.png" target="_blank">
+                        <img src="../assets/camisas/atleticomineiroretro2008.png" alt="Atlético Mineiro Home 2026/27"
+                            class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Atlético Mineiro Retrô 2008 Preta</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticoretro2008.jpg" target="_blank">
+                        <img src="../assets/camisas/atleticoretro2008.jpg" alt="Atlético Mineiro Home 2026/27"
+                            class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Atlético Mineiro Retrô 2008 Listrada</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticoretro2003.jpg" target="_blank">
+                        <img src="../assets/camisas/atleticoretro2003.jpg" alt="Atlético Mineiro Home 2026/27"
+                            class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Atlético Mineiro Retrô 2003</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticoretro1997.jpg" target="_blank">
+                        <img src="../assets/camisas/atleticoretro1997.jpg" alt="Atlético Mineiro Home 2026/27"
+                            class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Atlético Mineiro Retrô 1997</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticomineiroretro1994.png" target="_blank">
+                        <img src="../assets/camisas/atleticomineiroretro1994.png" alt="Atlético Mineiro Home 2026/27"
+                            class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Atlético Mineiro Retrô 1994</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>149,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =======================
+             FEMININA
+        ======================== -->
+
+        <div id="feminina" class="tab-content">
+
+            <div class="produtos-grid">
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticomineirofeminina.jpg" target="_blank">
+                        <img src="../assets/camisas/atleticomineirofeminina.jpg" alt="Atlético Mineiro Home 2026/27"
+                            class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Atlético Mineiro Feminina 2026/27 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticomineirofemininaaway.jpg" target="_blank">
+                        <img src="../assets/camisas/atleticomineirofemininaaway.jpg" alt="Atlético Mineiro Home 2026/27"
+                            class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Atlético Mineiro Feminina 2026/27 Away</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>119,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- =======================
+             INFANTIL
+        ======================== -->
+
+        <div id="infantil" class="tab-content">
+
+            <div class="produtos-grid">
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticomineiroinfantilhome.jpg" target="_blank">
+                        <img src="../assets/camisas/atleticomineiroinfantilhome.jpg" alt="Atlético Mineiro Home 2026/27"
+                            class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Kit Infantil Atlético Mineiro 2026/27 Home</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>139,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="produto-card">
+
+                    <a href="../assets/camisas/atleticomineiroinfantilaway.jpg" target="_blank">
+                        <img src="../assets/camisas/atleticomineiroinfantilaway.jpg" alt="Atlético Mineiro Home 2026/27"
+                            class="produto-img">
+                    </a>
+
+                    <div class="produto-info">
+
+                        <h4>Kit Infantil Atlético Mineiro 2026/27 Away</h4>
+
+                        <p class="descricao">
+                            Camisa Tailandesa 1.1.
+                        </p>
+
+                        <div class="preco">
+                            R$ <span>139,90</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <p style="margin-top:40px;">
+            <a href="../index.html" style="color:#6f6;">← Voltar</a>
+        </p>
+
     </div>
+
+    <script>
+        function abrirTab(id, botao) {
+
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(id).classList.add('active');
+            botao.classList.add('active');
+        }
+    </script>
+
 </body>
 
 </html>
