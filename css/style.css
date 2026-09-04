@@ -1079,6 +1079,159 @@ select.catalog-control{
     color:#b7f6c8;
 }
 
+.brazilian-club-page .container{
+    width:min(1240px,calc(100% - 32px));
+    max-width:none;
+    margin:0 auto;
+    padding:44px 0 56px;
+}
+
+.brazilian-club-page .container > h1{
+    margin:0 0 28px;
+    color:#fff;
+    font-family:"Barlow Condensed",sans-serif;
+    font-size:clamp(2.5rem,5vw,4.4rem);
+    font-weight:700;
+    line-height:.95;
+    letter-spacing:.01em;
+}
+
+.brazilian-club-page .tabs{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin:0 0 28px;
+    padding:0 0 18px;
+    border-bottom:1px solid #30383d;
+}
+
+.brazilian-club-page .tab-btn{
+    min-height:42px;
+    padding:0 17px;
+    border:1px solid #354148;
+    border-radius:8px;
+    background:#1a1f22;
+    color:#b9c4c8;
+    cursor:pointer;
+    font-family:"Manrope",sans-serif;
+    font-size:.78rem;
+    font-weight:800;
+    transition:background .2s,border-color .2s,color .2s;
+}
+
+.brazilian-club-page .tab-btn:hover,
+.brazilian-club-page .tab-btn.active{
+    border-color:#22c55e;
+    background:#202a25;
+    color:#7bf09c;
+}
+
+.brazilian-club-page .produtos-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+}
+
+.brazilian-club-page .produto-card{
+    min-width:0;
+    overflow:hidden;
+    border:1px solid #293136;
+    border-radius:12px;
+    background:#191e21;
+    box-shadow:0 12px 28px rgba(0,0,0,.18);
+    transition:transform .25s,border-color .25s,box-shadow .25s;
+}
+
+.brazilian-club-page .produto-card:hover{
+    transform:translateY(-5px);
+    border-color:rgba(34,197,94,.65);
+    box-shadow:0 18px 36px rgba(0,0,0,.32);
+}
+
+.brazilian-club-page .produto-img{
+    width:100%;
+    height:auto;
+    aspect-ratio:1 / 1.08;
+    display:block;
+    object-fit:contain;
+    background:#252c30;
+}
+
+.brazilian-club-page .produto-info{
+    padding:15px 16px 17px;
+}
+
+.brazilian-club-page .produto-info h4{
+    min-height:2.3em;
+    margin:8px 0 6px;
+    color:#fff;
+    font-family:"Barlow Condensed",sans-serif;
+    font-size:1.35rem;
+    font-weight:600;
+    line-height:1.05;
+}
+
+.brazilian-club-page .descricao{
+    margin:0;
+    color:#89949a;
+    font-family:"Manrope",sans-serif;
+    font-size:.75rem;
+}
+
+.brazilian-club-page .preco{
+    margin-top:12px;
+    color:#67e08a;
+    font-family:"Manrope",sans-serif;
+    font-size:1.05rem;
+}
+
+.brazilian-club-page .preco span{
+    font-size:inherit;
+}
+
+.brazilian-club-page .tamanhos{
+    margin-top:8px;
+    color:#b9c4c8;
+    font-family:"Manrope",sans-serif;
+    font-size:.75rem;
+}
+
+@media (max-width:960px){
+    .brazilian-club-page .produtos-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+}
+
+@media (max-width:680px){
+    .brazilian-club-page .container{
+        width:min(100% - 24px,520px);
+        padding-top:28px;
+    }
+
+    .brazilian-club-page .container > h1{
+        margin-bottom:22px;
+    }
+
+    .brazilian-club-page .produtos-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:12px;
+    }
+
+    .brazilian-club-page .produto-info{
+        padding:12px;
+    }
+
+    .brazilian-club-page .produto-info h4{
+        font-size:1.2rem;
+    }
+}
+
+@media (max-width:360px){
+    .brazilian-club-page .produtos-grid{
+        grid-template-columns:1fr;
+    }
+}
+
 @media (max-width:960px){
     .catalog-grid{
         grid-template-columns:repeat(3,minmax(0,1fr));
