@@ -1,202 +1,52 @@
 <!DOCTYPE html>
-<html lang='pt-BR'>
+<html lang="pt-BR">
 
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
-    <link href='css/style.css' rel='stylesheet'>
-    <title>Seleções</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Catálogo de camisas das principais seleções do mundo.">
+    <title>Seleções | Mantos FC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
-    <div style='max-width:1100px;margin:auto;padding:40px'>
-        <h1>Seleções</h1>
-        <div style='display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px'>
-            <div class="produto-card">
+<body class="catalog-page">
+    <main class="catalog-shell">
+        <a class="catalog-top-back" href="index.html">← Menu principal</a>
 
-                <a href="assets/camisas/brasil.png" target="_blank">
-                    <img src="assets/camisas/brasil.png" alt="Brasil" class="produto-img">
-                </a>
-
-                <div class="produto-info">
-
-                    <h4>Brasil Home 2026/27</h4>
-
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
-
-                    <div class="preco">
-                        R$ <span>119,90</span>
-                    </div>
-
-
-                </div>
-
+        <header class="catalog-header">
+            <div>
+                <p class="catalog-kicker">Mantos FC / Catálogo</p>
+                <h1>Seleções</h1>
             </div>
+            <p>Encontre camisas das seleções que fazem história no futebol mundial.</p>
+        </header>
 
-            <div class="produto-card">
+        <section class="catalog-toolbar" aria-label="Busca no catálogo">
+            <label class="visually-hidden" for="filtro-selecoes">Buscar seleção</label>
+            <input class="catalog-control" id="filtro-selecoes" type="search" placeholder="Buscar por seleção ou modelo..." autocomplete="off">
+        </section>
 
-                <a href="assets/camisas/brasilaway.png" target="_blank">
-                    <img src="assets/camisas/brasilaway.png" alt="Brasil" class="produto-img">
-                </a>
-
-                <div class="produto-info">
-
-                    <h4>Brasil Away 2026/27</h4>
-
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
-
-                    <div class="preco">
-                        R$ <span>119,90</span>
-                    </div>
-
-
-                </div>
-
-            </div>
-            <div class="produto-card">
-
-                <a href="assets/camisas/argentinahome.png" target="_blank">
-                    <img src="assets/camisas/argentinahome.png" alt="Brasil" class="produto-img">
-                </a>
-
-                <div class="produto-info">
-
-                    <h4>Argentina Home 2026/27</h4>
-
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
-
-                    <div class="preco">
-                        R$ <span>119,90</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="produto-card">
-
-                <a href="assets/camisas/espanhahome.jpg" target="_blank">
-                    <img src="assets/camisas/espanhahome.jpg" alt="Brasil" class="produto-img">
-                </a>
-
-                <div class="produto-info">
-
-                    <h4>Espanha Home 2026/27</h4>
-
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
-
-                    <div class="preco">
-                        R$ <span>119,90</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="produto-card">
-
-                <a href="assets/camisas/espanhaaway.png" target="_blank">
-                    <img src="assets/camisas/espanhaaway.png" alt="Brasil" class="produto-img">
-                </a>
-
-                <div class="produto-info">
-
-                    <h4>Espanha Away 2026/27</h4>
-
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
-
-                    <div class="preco">
-                        R$ <span>119,90</span>
-                    </div>
-
-
-                </div>
-
-            </div>
-
-            <div class="produto-card">
-
-                <a href="assets/camisas/japao home.jpg" target="_blank">
-                    <img src="assets/camisas/japao home.jpg" alt="Brasil" class="produto-img">
-                </a>
-
-                <div class="produto-info">
-
-                    <h4>Japão Home 2026/27</h4>
-
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
-
-                    <div class="preco">
-                        R$ <span>119,9</span>
-                    </div>
-
-
-                </div>
-
-            </div>
-
-            <div class="produto-card">
-
-                <a href="assets/camisas/italiahome.jpg" target="_blank">
-                    <img src="assets/camisas/italiahome.jpg" alt="Brasil" class="produto-img">
-                </a>
-
-                <div class="produto-info">
-
-                    <h4>Italia Home 2026/27</h4>
-
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
-
-                    <div class="preco">
-                        R$ <span>119,9</span>
-                    </div>
-
-
-                </div>
-
-            </div>
-
-            <div class="produto-card">
-
-                <a href="assets/camisas/alemanhaaway.jpg" target="_blank">
-                    <img src="assets/camisas/alemanhaaway.jpg" alt="Brasil" class="produto-img">
-                </a>
-
-                <div class="produto-info">
-
-                    <h4>Alemanha Away 2026/27</h4>
-
-                    <p class="descricao">
-                        Camisa Tailandesa 1.1.
-                    </p>
-
-                    <div class="preco">
-                        R$ <span>119,90</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
+        <div class="catalog-meta">
+            <span>Camisas disponíveis</span>
+            <span class="catalog-count" id="selecoes-count" aria-live="polite"></span>
         </div>
-        <p><a href='index.html' style='color:#6f6'>← Voltar</a></p>
-    </div>
+
+        <section class="catalog-grid" id="selecoes-container" aria-live="polite"></section>
+        <p class="catalog-empty" id="selecoes-empty" hidden>Nenhuma seleção encontrada com essa busca.</p>
+
+        <nav class="catalog-pagination" id="selecoes-pagination" aria-label="Paginação do catálogo">
+            <button class="catalog-page-button" id="selecoes-previous" type="button">← Anterior</button>
+            <span class="catalog-page-status" id="selecoes-page-status" aria-live="polite"></span>
+            <button class="catalog-page-button" id="selecoes-next" type="button">Próxima →</button>
+        </nav>
+
+        <a class="catalog-back" href="index.html">← Voltar para a página inicial</a>
+    </main>
+
+    <script src="js/script.js"></script>
 </body>
 
 </html>

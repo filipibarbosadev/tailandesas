@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Catálogo de camisas de clubes do resto do mundo.">
+    <title>Resto do Mundo | Mantos FC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body class="catalog-page">
+    <main class="catalog-shell">
+        <a class="catalog-top-back" href="index.html">← Menu principal</a>
+
+        <header class="catalog-header">
+            <div>
+                <p class="catalog-kicker">Mantos FC / Catálogo</p>
+                <h1>Resto do Mundo</h1>
+            </div>
+            <p>Descubra camisas de clubes internacionais fora dos grandes campeonatos europeus.</p>
+        </header>
+
+        <section class="catalog-toolbar" aria-label="Busca no catálogo">
+            <label class="visually-hidden" for="resto-search">Buscar camisa</label>
+            <input class="catalog-control" id="resto-search" type="search" placeholder="Buscar por clube ou modelo..." autocomplete="off">
+        </section>
+
+        <div class="catalog-meta">
+            <span>Camisas disponíveis</span>
+            <span class="catalog-count" id="resto-count" aria-live="polite"></span>
+        </div>
+
+        <section class="catalog-grid" id="resto-grid" aria-live="polite"></section>
+        <p class="catalog-empty" id="resto-empty" hidden>Nenhuma camisa encontrada com essa busca.</p>
+
+        <nav class="catalog-pagination" id="resto-pagination" aria-label="Paginação do catálogo">
+            <button class="catalog-page-button" id="resto-previous" type="button">← Anterior</button>
+            <span class="catalog-page-status" id="resto-page-status" aria-live="polite"></span>
+            <button class="catalog-page-button" id="resto-next" type="button">Próxima →</button>
+        </nav>
+
+        <a class="catalog-back" href="index.html">← Voltar para a página inicial</a>
+    </main>
+
+    <script src="js/restodomundo.js"></script>
+</body>
+
+</html>

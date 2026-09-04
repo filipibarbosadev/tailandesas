@@ -574,12 +574,16 @@ img {
 .selection-banner{
 
     background:linear-gradient(135deg,#1d2125,#2b3138);
+    min-height:360px;
 
     border:1px solid rgba(34,197,94,.25);
 
     border-radius:18px;
 
-    padding:60px 40px;
+    padding:48px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
     text-align:center;
 
@@ -589,6 +593,30 @@ img {
 
 }
 
+.europe-banner{
+
+    background:
+        radial-gradient(ellipse at center,rgba(5,14,28,.52) 0%,rgba(5,14,28,.76) 58%,rgba(5,14,28,.88) 100%),
+        url("../assets/clubeseuropeus.png") center/cover no-repeat;
+
+}
+
+.selecoes-banner{
+
+    background:
+        radial-gradient(ellipse at center,rgba(5,14,28,.52) 0%,rgba(5,14,28,.76) 58%,rgba(5,14,28,.88) 100%),
+        url("../assets/selecoes.png") center/cover no-repeat;
+
+}
+
+    .resto-banner{
+
+        background:
+        radial-gradient(ellipse at center,rgba(5,14,28,.52) 0%,rgba(5,14,28,.76) 58%,rgba(5,14,28,.88) 100%),
+        url("../assets/restodomundo.png") center/cover no-repeat;
+
+    }
+
 .selection-banner::before{
 
     content:"";
@@ -597,9 +625,7 @@ img {
 
     inset:0;
 
-    background:radial-gradient(circle at top right,
-            rgba(34,197,94,.15),
-            transparent 45%);
+    background:linear-gradient(90deg,rgba(34,197,94,.08),transparent 35%,transparent 65%,rgba(34,197,94,.08));
 
 }
 
@@ -607,6 +633,8 @@ img {
 
     position:relative;
     z-index:2;
+    max-width:780px;
+    padding:12px 22px;
 
 }
 
@@ -618,35 +646,75 @@ img {
 
     color:#fff;
 
-    padding:8px 18px;
+    padding:7px 16px;
 
-    border-radius:50px;
+    border-radius:6px;
+
+    letter-spacing:.12em;
+
+    font-size:.78rem;
 
     font-weight:700;
 
-    margin-bottom:20px;
+    margin-bottom:18px;
+
+    text-shadow:none;
 
 }
 
 .selection-content h2{
 
     color:#fff;
+    font-family:"Barlow Condensed",sans-serif;
 
-    font-size:2.4rem;
+    max-width:700px;
+    margin:0 auto 14px;
+    font-size:clamp(2rem,3.5vw,2.8rem);
 
-    margin-bottom:20px;
+    font-weight:700;
+
+    letter-spacing:.025em;
+
+    line-height:1.05;
+
+    text-wrap:balance;
+
+    text-shadow:0 2px 3px rgba(0,0,0,.95),0 4px 18px rgba(0,0,0,.65);
+
+}
+
+.selection-content h2::after{
+
+    content:"";
+    display:block;
+    width:42px;
+    height:3px;
+    margin:14px auto 0;
+    background:#22c55e;
+    border-radius:2px;
+    box-shadow:0 0 10px rgba(34,197,94,.65);
 
 }
 
 .selection-content p{
 
-    color:#c9c9c9;
+    color:rgba(255,255,255,.9);
 
-    max-width:650px;
+    font-family:"Manrope",sans-serif;
 
-    margin:0 auto 35px;
+    max-width:560px;
 
-    font-size:1.1rem;
+    margin:0 auto 28px;
+
+    font-size:.98rem;
+
+    font-weight:500;
+
+    line-height:1.55;
+
+    letter-spacing:.01em;
+
+    text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 12px rgba(0,0,0,.45);
 
 }
 
@@ -660,11 +728,21 @@ img {
 
     text-decoration:none;
 
+    font-family:"Manrope",sans-serif;
+
     font-weight:700;
 
-    padding:16px 36px;
+    font-size:.84rem;
 
-    border-radius:12px;
+    letter-spacing:.04em;
+
+    text-transform:uppercase;
+
+    padding:13px 24px;
+
+    border-radius:8px;
+
+    text-shadow:none;
 
     transition:.3s;
 
@@ -680,4 +758,382 @@ img {
 
     box-shadow:0 10px 25px rgba(34,197,94,.35);
 
+}
+
+@media (max-width:576px){
+
+    .europe-banner{
+        background-image:
+            radial-gradient(ellipse at center,rgba(5,14,28,.52) 0%,rgba(5,14,28,.76) 58%,rgba(5,14,28,.88) 100%),
+            url("../assets/clubeseuropeusmobile.png");
+    }
+
+    .selecoes-banner{
+        background-image:
+            radial-gradient(ellipse at center,rgba(5,14,28,.52) 0%,rgba(5,14,28,.76) 58%,rgba(5,14,28,.88) 100%),
+            url("../assets/selecoesmobile.png");
+    }
+
+    .resto-banner{
+        background-image:
+            radial-gradient(ellipse at center,rgba(5,14,28,.52) 0%,rgba(5,14,28,.76) 58%,rgba(5,14,28,.88) 100%),
+            url("../assets/restodomundomobile.png");
+    }
+
+    .selection-banner{
+        min-height:340px;
+        padding:36px 14px;
+        border-radius:14px;
+    }
+
+    .selection-content{
+        padding:8px 10px;
+    }
+
+    .selection-content p{
+        font-size:.95rem;
+        line-height:1.5;
+    }
+
+    .selection-btn{
+        width:100%;
+        max-width:280px;
+    }
+
+}
+
+.catalog-page{
+    min-height:100vh;
+    background:#111;
+    color:#fff;
+}
+
+.visually-hidden{
+    position:absolute !important;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+}
+
+.catalog-shell{
+    width:min(1240px,calc(100% - 32px));
+    margin:0 auto;
+    padding:44px 0 56px;
+}
+
+.catalog-top-back{
+    display:inline-flex;
+    align-items:center;
+    margin-bottom:34px;
+    color:#9ca9ae;
+    font-family:"Manrope",sans-serif;
+    font-size:.82rem;
+    font-weight:700;
+    text-decoration:none;
+    transition:color .2s,transform .2s;
+}
+
+.catalog-top-back:hover{
+    color:#7bf09c;
+    transform:translateX(-3px);
+}
+
+.catalog-header{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    margin-bottom:28px;
+}
+
+.catalog-kicker{
+    margin:0 0 8px;
+    color:#22c55e;
+    font-family:"Manrope",sans-serif;
+    font-size:.78rem;
+    font-weight:800;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+}
+
+.catalog-header h1{
+    margin:0;
+    color:#fff;
+    font-family:"Barlow Condensed",sans-serif;
+    font-size:clamp(2.5rem,5vw,4.4rem);
+    line-height:.95;
+    letter-spacing:.01em;
+}
+
+.catalog-header p{
+    max-width:420px;
+    margin:0;
+    color:#aeb6bb;
+    font-family:"Manrope",sans-serif;
+    font-size:.95rem;
+    line-height:1.6;
+}
+
+.catalog-toolbar{
+    display:grid;
+    grid-template-columns:minmax(240px,1fr) minmax(210px,280px);
+    gap:12px;
+    margin-bottom:22px;
+}
+
+.catalog-control{
+    width:100%;
+    min-height:52px;
+    border:1px solid #30383d;
+    border-radius:10px;
+    outline:none;
+    background:#1a1f22;
+    color:#fff;
+    font-family:"Manrope",sans-serif;
+    font-size:.95rem;
+    transition:border-color .2s,box-shadow .2s;
+}
+
+input.catalog-control{
+    padding:0 17px;
+}
+
+select.catalog-control{
+    padding:0 14px;
+}
+
+.catalog-control::placeholder{
+    color:#7f8a90;
+}
+
+.catalog-control:focus{
+    border-color:#22c55e;
+    box-shadow:0 0 0 3px rgba(34,197,94,.14);
+}
+
+.catalog-meta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:16px;
+    color:#849097;
+    font-family:"Manrope",sans-serif;
+    font-size:.82rem;
+}
+
+.catalog-count{
+    color:#d8dee1;
+    font-weight:700;
+}
+
+.catalog-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+}
+
+.catalog-card{
+    min-width:0;
+    overflow:hidden;
+    border:1px solid #293136;
+    border-radius:12px;
+    background:#191e21;
+    box-shadow:0 12px 28px rgba(0,0,0,.18);
+    transition:transform .25s,border-color .25s,box-shadow .25s;
+}
+
+.catalog-card:hover{
+    transform:translateY(-5px);
+    border-color:rgba(34,197,94,.65);
+    box-shadow:0 18px 36px rgba(0,0,0,.32);
+}
+
+.catalog-card-media{
+    display:block;
+    aspect-ratio:1 / 1.08;
+    overflow:hidden;
+    background:#252c30;
+}
+
+.catalog-card-media img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:contain;
+    transition:transform .35s;
+}
+
+.catalog-card:hover .catalog-card-media img{
+    transform:scale(1.04);
+}
+
+.catalog-card-content{
+    padding:15px 16px 17px;
+}
+
+.catalog-card-league{
+    color:#22c55e;
+    font-family:"Manrope",sans-serif;
+    font-size:.68rem;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.catalog-card h2{
+    min-height:2.8em;
+    margin:8px 0 6px;
+    color:#fff;
+    font-family:"Barlow Condensed",sans-serif;
+    font-size:1.35rem;
+    font-weight:600;
+    line-height:1.05;
+}
+
+.catalog-card p{
+    margin:0;
+    color:#89949a;
+    font-family:"Manrope",sans-serif;
+    font-size:.75rem;
+}
+
+.catalog-card strong{
+    display:block;
+    margin-top:12px;
+    color:#67e08a;
+    font-family:"Manrope",sans-serif;
+    font-size:1.05rem;
+}
+
+.catalog-empty{
+    grid-column:1 / -1;
+    padding:54px 20px;
+    border:1px dashed #39454b;
+    border-radius:12px;
+    color:#aeb6bb;
+    font-family:"Manrope",sans-serif;
+    text-align:center;
+}
+
+.catalog-pagination{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    margin-top:30px;
+}
+
+.catalog-page-button{
+    min-width:116px;
+    min-height:42px;
+    padding:0 16px;
+    border:1px solid #354148;
+    border-radius:8px;
+    background:#1a1f22;
+    color:#e8edef;
+    cursor:pointer;
+    font-family:"Manrope",sans-serif;
+    font-size:.78rem;
+    font-weight:800;
+    letter-spacing:.02em;
+    transition:background .2s,border-color .2s,color .2s,opacity .2s;
+}
+
+.catalog-page-button:hover:not(:disabled){
+    border-color:#22c55e;
+    background:#202a25;
+    color:#7bf09c;
+}
+
+.catalog-page-button:disabled{
+    cursor:not-allowed;
+    opacity:.35;
+}
+
+.catalog-page-status{
+    min-width:100px;
+    color:#b9c4c8;
+    font-family:"Manrope",sans-serif;
+    font-size:.8rem;
+    font-weight:700;
+    text-align:center;
+}
+
+.catalog-back{
+    display:inline-block;
+    margin-top:28px;
+    color:#78e697;
+    font-family:"Manrope",sans-serif;
+    font-size:.9rem;
+    font-weight:700;
+    text-decoration:none;
+}
+
+.catalog-back:hover{
+    color:#b7f6c8;
+}
+
+@media (max-width:960px){
+    .catalog-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+}
+
+@media (max-width:680px){
+    .catalog-shell{
+        width:min(100% - 24px,520px);
+        padding-top:28px;
+    }
+
+    .catalog-header{
+        display:block;
+    }
+
+    .catalog-header p{
+        margin-top:14px;
+    }
+
+    .catalog-toolbar{
+        grid-template-columns:1fr;
+    }
+
+    .catalog-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:12px;
+    }
+
+    .catalog-card-content{
+        padding:12px;
+    }
+
+    .catalog-card h2{
+        font-size:1.2rem;
+    }
+
+    .catalog-pagination{
+        gap:8px;
+    }
+
+    .catalog-page-button{
+        min-width:0;
+        flex:1;
+        padding:0 8px;
+    }
+
+    .catalog-page-status{
+        min-width:82px;
+        font-size:.72rem;
+    }
+}
+
+@media (max-width:360px){
+    .catalog-grid{
+        grid-template-columns:1fr;
+    }
 }
