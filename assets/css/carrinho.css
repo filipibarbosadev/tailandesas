@@ -1,0 +1,959 @@
+/* Carrinho de compras (componentes/carrinho.js): botão Comprar, escolha de tamanho, carrinho lateral e aviso */
+
+html.carrinho-travado,
+html.carrinho-travado body{
+    overflow:hidden;
+}
+
+.botao-comprar,
+.carrinho-flutuante,
+.carrinho-escolha *,
+.carrinho-painel *,
+.carrinho-aviso,
+.carrinho-aviso *{
+    box-sizing:border-box;
+}
+
+/* espaço para o botão flutuante não cobrir a última fileira de camisas */
+body.com-carrinho-flutuante{
+    padding-bottom:84px;
+}
+
+/* ---------- Botão "Comprar" nos cards ---------- */
+
+.botao-comprar{
+    width:100%;
+    min-height:40px;
+    margin-top:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:0 10px;
+    border:1px solid rgba(34,197,94,.55);
+    border-radius:9px;
+    background:#16201a;
+    color:#7bf09c;
+    cursor:pointer;
+    font-family:"Manrope",sans-serif;
+    font-size:.8rem;
+    font-weight:800;
+    transition:background .2s,color .2s,border-color .2s;
+    -webkit-tap-highlight-color:transparent;
+}
+
+.botao-comprar svg{
+    width:17px;
+    height:17px;
+    flex:none;
+}
+
+.botao-comprar:hover{
+    border-color:#22c55e;
+    background:#22c55e;
+    color:#06140b;
+}
+
+.botao-comprar:focus-visible,
+.carrinho-escolha button:focus-visible,
+.carrinho-painel button:focus-visible,
+.carrinho-painel a:focus-visible,
+.carrinho-flutuante:focus-visible,
+.carrinho-aviso button:focus-visible{
+    outline:2px solid #22c55e;
+    outline-offset:2px;
+}
+
+/* ---------- Contador e botão flutuante ---------- */
+
+.home-cart-btn{
+    position:relative;
+}
+
+.carrinho-contagem{
+    position:absolute;
+    top:-7px;
+    right:-7px;
+    min-width:20px;
+    height:20px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 5px;
+    border:2px solid #111;
+    border-radius:999px;
+    background:#22c55e;
+    color:#06140b;
+    font-family:"Manrope",sans-serif;
+    font-size:.68rem;
+    font-weight:800;
+    line-height:1;
+}
+
+.carrinho-contagem[hidden]{
+    display:none;
+}
+
+.carrinho-flutuante{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    z-index:60;
+    width:58px;
+    height:58px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border:0;
+    border-radius:50%;
+    background:#22c55e;
+    box-shadow:0 12px 30px rgba(0,0,0,.45);
+    color:#06140b;
+    cursor:pointer;
+    transition:transform .2s,background .2s;
+}
+
+.carrinho-flutuante:hover{
+    background:#4ade80;
+    transform:translateY(-2px);
+}
+
+.carrinho-flutuante svg{
+    width:26px;
+    height:26px;
+}
+
+.carrinho-flutuante .carrinho-contagem{
+    top:-3px;
+    right:-3px;
+    background:#fff;
+}
+
+.pulsar{
+    animation:carrinho-pulsar .45s ease;
+}
+
+@keyframes carrinho-pulsar{
+    40%{ transform:scale(1.14); }
+}
+
+/* ---------- Estrutura comum das janelas ---------- */
+
+.carrinho-escolha,
+.carrinho-painel{
+    position:fixed;
+    inset:0;
+    z-index:120;
+}
+
+.carrinho-escolha{
+    z-index:130;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:16px;
+}
+
+.carrinho-escolha[hidden],
+.carrinho-painel[hidden]{
+    display:none;
+}
+
+.carrinho-fundo{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    opacity:0;
+    transition:opacity .25s;
+}
+
+.aberto > .carrinho-fundo{
+    opacity:1;
+}
+
+.carrinho-fechar{
+    width:40px;
+    height:40px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex:none;
+    padding:0;
+    border:1px solid #30383d;
+    border-radius:10px;
+    background:#1a1f22;
+    color:#e8edef;
+    cursor:pointer;
+}
+
+.carrinho-fechar:hover{
+    border-color:#22c55e;
+    color:#7bf09c;
+}
+
+.carrinho-fechar svg{
+    width:20px;
+    height:20px;
+}
+
+.carrinho-botao-principal{
+    width:100%;
+    min-height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:0 16px;
+    border:0;
+    border-radius:11px;
+    background:#22c55e;
+    color:#06140b;
+    cursor:pointer;
+    font-family:"Manrope",sans-serif;
+    font-size:.95rem;
+    font-weight:800;
+    text-decoration:none;
+    transition:background .2s;
+}
+
+.carrinho-botao-principal:hover{
+    background:#4ade80;
+    color:#06140b;
+}
+
+.carrinho-botao-principal svg{
+    width:21px;
+    height:21px;
+}
+
+.carrinho-botao-secundario{
+    min-height:44px;
+    padding:0 20px;
+    border:1px solid #354148;
+    border-radius:10px;
+    background:#1a1f22;
+    color:#e8edef;
+    cursor:pointer;
+    font-family:"Manrope",sans-serif;
+    font-size:.85rem;
+    font-weight:800;
+}
+
+.carrinho-botao-secundario:hover{
+    border-color:#22c55e;
+    color:#7bf09c;
+}
+
+.carrinho-qtd{
+    display:inline-flex;
+    align-items:center;
+    overflow:hidden;
+    border:1px solid #354148;
+    border-radius:10px;
+    background:#1a1f22;
+}
+
+.carrinho-qtd button{
+    width:40px;
+    height:40px;
+    border:0;
+    background:none;
+    color:#e8edef;
+    cursor:pointer;
+    font-size:1.2rem;
+    font-weight:700;
+}
+
+.carrinho-qtd button:hover{
+    background:#202a25;
+    color:#7bf09c;
+}
+
+.carrinho-qtd output{
+    min-width:34px;
+    color:#fff;
+    font-family:"Manrope",sans-serif;
+    font-weight:800;
+    text-align:center;
+}
+
+/* ---------- Escolha de tamanho ---------- */
+
+.carrinho-escolha-caixa{
+    position:relative;
+    width:min(780px,100%);
+    max-height:calc(100vh - 32px);
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    overflow:auto;
+    border:1px solid #293136;
+    border-radius:18px;
+    background:#15191c;
+    box-shadow:0 30px 60px rgba(0,0,0,.5);
+    color:#fff;
+    opacity:0;
+    transform:translateY(12px);
+    transition:opacity .25s,transform .25s;
+}
+
+.aberto > .carrinho-escolha-caixa{
+    opacity:1;
+    transform:none;
+}
+
+.carrinho-escolha-caixa > .carrinho-fechar{
+    position:absolute;
+    top:12px;
+    right:12px;
+    z-index:1;
+}
+
+.carrinho-escolha-foto{
+    background:#252c30;
+}
+
+.carrinho-escolha-foto img{
+    width:100%;
+    height:100%;
+    min-height:100%;
+    max-height:560px;
+    display:block;
+    object-fit:contain;
+}
+
+.carrinho-escolha-info{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    padding:26px 24px 22px;
+    font-family:"Manrope",sans-serif;
+}
+
+.carrinho-escolha-liga{
+    padding-right:46px;
+    color:#22c55e;
+    font-size:.7rem;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.carrinho-escolha-info h2{
+    margin:0;
+    padding-right:46px;
+    font-family:"Barlow Condensed",sans-serif;
+    font-size:1.8rem;
+    font-weight:600;
+    line-height:1.05;
+}
+
+.carrinho-escolha-preco{
+    color:#67e08a;
+    font-size:1.35rem;
+}
+
+.carrinho-tamanhos{
+    margin:6px 0 0;
+    padding:0;
+    border:0;
+}
+
+.carrinho-tamanhos legend{
+    margin-bottom:10px;
+    padding:0;
+    color:#d8dee1;
+    font-size:.82rem;
+    font-weight:800;
+}
+
+.carrinho-tamanhos-opcoes{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.carrinho-tamanho{
+    position:relative;
+}
+
+.carrinho-tamanho input{
+    position:absolute;
+    inset:0;
+    margin:0;
+    opacity:0;
+    cursor:pointer;
+}
+
+.carrinho-tamanho span{
+    min-width:50px;
+    min-height:44px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 12px;
+    border:1px solid #354148;
+    border-radius:10px;
+    background:#1a1f22;
+    color:#d8dee1;
+    font-size:.88rem;
+    font-weight:800;
+    transition:background .15s,border-color .15s,color .15s;
+}
+
+.carrinho-tamanho:hover span{
+    border-color:#22c55e;
+}
+
+.carrinho-tamanho input:checked + span{
+    border-color:#22c55e;
+    background:#22c55e;
+    color:#06140b;
+}
+
+.carrinho-tamanho input:focus-visible + span{
+    outline:2px solid #22c55e;
+    outline-offset:2px;
+}
+
+/* Personalização com nome e número */
+.carrinho-escolha-valor{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+}
+
+.carrinho-escolha-extra{
+    color:#9ca9ae;
+    font-size:.76rem;
+    font-weight:700;
+}
+
+.carrinho-escolha-extra[hidden]{
+    display:none;
+}
+
+.carrinho-personalizar{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    padding:14px;
+    border:1px solid #293136;
+    border-radius:12px;
+    background:#1a1f22;
+}
+
+.carrinho-opcao{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    cursor:pointer;
+}
+
+.carrinho-opcao input{
+    position:absolute;
+    width:1px;
+    height:1px;
+    margin:0;
+    opacity:0;
+}
+
+.carrinho-opcao-caixa{
+    width:22px;
+    height:22px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex:none;
+    border:2px solid #4a555b;
+    border-radius:6px;
+    transition:background .15s,border-color .15s;
+}
+
+.carrinho-opcao-caixa::after{
+    content:"";
+    width:10px;
+    height:5px;
+    margin-top:-3px;
+    border-bottom:2.5px solid #06140b;
+    border-left:2.5px solid #06140b;
+    opacity:0;
+    transform:rotate(-45deg);
+}
+
+.carrinho-opcao:hover .carrinho-opcao-caixa{
+    border-color:#22c55e;
+}
+
+.carrinho-opcao input:checked + .carrinho-opcao-caixa{
+    border-color:#22c55e;
+    background:#22c55e;
+}
+
+.carrinho-opcao input:checked + .carrinho-opcao-caixa::after{
+    opacity:1;
+}
+
+.carrinho-opcao input:focus-visible + .carrinho-opcao-caixa{
+    outline:2px solid #22c55e;
+    outline-offset:2px;
+}
+
+.carrinho-opcao-texto{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+}
+
+.carrinho-opcao-texto strong{
+    color:#e8edef;
+    font-size:.86rem;
+}
+
+.carrinho-opcao-texto small{
+    color:#7bf09c;
+    font-size:.76rem;
+    font-weight:700;
+}
+
+.carrinho-personalizar-campos{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 92px;
+    gap:10px;
+}
+
+.carrinho-personalizar-campos[hidden]{
+    display:none;
+}
+
+.carrinho-campo{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    color:#9ca9ae;
+    font-size:.74rem;
+    font-weight:800;
+}
+
+/* 16px evita o zoom automático do iPhone ao tocar no campo */
+.carrinho-campo input{
+    width:100%;
+    height:46px;
+    padding:0 12px;
+    border:1px solid #354148;
+    border-radius:10px;
+    outline:none;
+    background:#111;
+    color:#fff;
+    font-family:inherit;
+    font-size:1rem;
+    font-weight:800;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+}
+
+.carrinho-campo input:focus{
+    border-color:#22c55e;
+    box-shadow:0 0 0 3px rgba(34,197,94,.16);
+}
+
+.carrinho-campo input::placeholder{
+    color:#5d686e;
+    font-weight:600;
+    letter-spacing:0;
+}
+
+.carrinho-personalizar .carrinho-erro{
+    margin:0;
+}
+
+.carrinho-item-info > .carrinho-item-personalizacao{
+    color:#7bf09c;
+}
+
+.carrinho-sem-quebra{
+    white-space:nowrap;
+}
+
+.carrinho-erro{
+    margin:-2px 0 0;
+    color:#fca5a5;
+    font-size:.8rem;
+    font-weight:700;
+}
+
+.carrinho-quantidade-linha{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin:4px 0 6px;
+    color:#d8dee1;
+    font-size:.82rem;
+    font-weight:800;
+}
+
+.carrinho-ver-foto{
+    align-self:center;
+    color:#9ca9ae;
+    font-size:.78rem;
+    font-weight:700;
+}
+
+.carrinho-ver-foto:hover{
+    color:#7bf09c;
+}
+
+/* ---------- Carrinho lateral ---------- */
+
+.carrinho-lateral{
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    width:min(420px,100%);
+    display:flex;
+    flex-direction:column;
+    border-left:1px solid #293136;
+    background:#15191c;
+    color:#fff;
+    font-family:"Manrope",sans-serif;
+    transform:translateX(100%);
+    transition:transform .28s ease;
+}
+
+.aberto > .carrinho-lateral{
+    transform:none;
+}
+
+.carrinho-topo{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:16px 18px;
+    border-bottom:1px solid #22292d;
+}
+
+.carrinho-topo h2{
+    margin:0;
+    font-family:"Barlow Condensed",sans-serif;
+    font-size:1.6rem;
+    font-weight:700;
+    line-height:1;
+}
+
+.carrinho-resumo{
+    color:#849097;
+    font-size:.78rem;
+    font-weight:700;
+}
+
+.carrinho-itens{
+    flex:1;
+    margin:0;
+    padding:6px 18px;
+    overflow-y:auto;
+    list-style:none;
+}
+
+.carrinho-item{
+    display:grid;
+    grid-template-columns:64px minmax(0,1fr) auto;
+    gap:12px;
+    align-items:start;
+    padding:14px 0;
+    border-bottom:1px solid #22292d;
+}
+
+.carrinho-item img{
+    width:64px;
+    height:70px;
+    border-radius:9px;
+    background:#252c30;
+    object-fit:contain;
+}
+
+.carrinho-item-info{
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.carrinho-item-info > strong{
+    font-family:"Barlow Condensed",sans-serif;
+    font-size:1.08rem;
+    font-weight:600;
+    line-height:1.1;
+}
+
+.carrinho-item-info > span{
+    color:#9ca9ae;
+    font-size:.76rem;
+    font-weight:600;
+}
+
+.carrinho-item-acoes{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:6px;
+}
+
+.carrinho-qtd-pequena button{
+    width:32px;
+    height:32px;
+    font-size:1rem;
+}
+
+.carrinho-qtd-pequena output{
+    min-width:26px;
+    font-size:.85rem;
+}
+
+.carrinho-remover{
+    width:34px;
+    height:34px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+    border:1px solid transparent;
+    border-radius:9px;
+    background:none;
+    color:#849097;
+    cursor:pointer;
+}
+
+.carrinho-remover:hover{
+    border-color:#5b2b2b;
+    color:#fca5a5;
+}
+
+.carrinho-remover svg{
+    width:18px;
+    height:18px;
+}
+
+.carrinho-item-valor{
+    color:#67e08a;
+    font-size:.9rem;
+    white-space:nowrap;
+}
+
+.carrinho-vazio{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    padding:30px;
+    color:#9ca9ae;
+    text-align:center;
+}
+
+.carrinho-vazio[hidden],
+.carrinho-rodape[hidden]{
+    display:none;
+}
+
+.carrinho-vazio svg{
+    width:46px;
+    height:46px;
+    color:#39454b;
+}
+
+.carrinho-vazio p{
+    margin:0;
+    font-weight:700;
+}
+
+.carrinho-rodape{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    padding:16px 18px 20px;
+    border-top:1px solid #22292d;
+    background:#12161a;
+}
+
+.carrinho-total{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    color:#d8dee1;
+    font-weight:800;
+}
+
+.carrinho-total strong{
+    color:#67e08a;
+    font-size:1.45rem;
+}
+
+.carrinho-nota{
+    margin:0;
+    color:#849097;
+    font-size:.74rem;
+    line-height:1.45;
+    text-align:center;
+}
+
+.carrinho-esvaziar{
+    align-self:center;
+    padding:4px 8px;
+    border:0;
+    background:none;
+    color:#9ca9ae;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:.76rem;
+    font-weight:700;
+    text-decoration:underline;
+}
+
+.carrinho-esvaziar:hover{
+    color:#fca5a5;
+}
+
+/* ---------- Aviso "Adicionado ao carrinho" ---------- */
+
+.carrinho-aviso{
+    position:fixed;
+    left:50%;
+    bottom:18px;
+    z-index:140;
+    width:min(440px,calc(100% - 24px));
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 12px 12px 14px;
+    border:1px solid rgba(34,197,94,.45);
+    border-radius:14px;
+    background:#16201a;
+    box-shadow:0 18px 40px rgba(0,0,0,.5);
+    color:#fff;
+    font-family:"Manrope",sans-serif;
+    opacity:0;
+    pointer-events:none;
+    transform:translate(-50%,16px);
+    transition:opacity .25s,transform .25s;
+}
+
+.carrinho-aviso.visivel{
+    opacity:1;
+    pointer-events:auto;
+    transform:translate(-50%,0);
+}
+
+/* não cobrir o botão flutuante do carrinho */
+.com-carrinho-flutuante .carrinho-aviso{
+    bottom:90px;
+}
+
+.carrinho-aviso-icone{
+    width:36px;
+    height:36px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex:none;
+    border-radius:50%;
+    background:#22c55e;
+    color:#06140b;
+}
+
+.carrinho-aviso-icone svg{
+    width:19px;
+    height:19px;
+}
+
+.carrinho-aviso div{
+    min-width:0;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    font-size:.82rem;
+}
+
+.carrinho-aviso-texto{
+    overflow:hidden;
+    color:#b7f6c8;
+    font-size:.76rem;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.carrinho-aviso button{
+    flex:none;
+    min-height:38px;
+    padding:0 12px;
+    border:1px solid #22c55e;
+    border-radius:9px;
+    background:none;
+    color:#7bf09c;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:.78rem;
+    font-weight:800;
+}
+
+.carrinho-aviso button:hover{
+    background:#22c55e;
+    color:#06140b;
+}
+
+/* ---------- Celular ---------- */
+
+@media (max-width:680px){
+    /* escolha de tamanho vira uma gaveta que sobe do rodapé */
+    .carrinho-escolha{
+        align-items:flex-end;
+        padding:0;
+    }
+
+    .carrinho-escolha-caixa{
+        max-height:92vh;
+        grid-template-columns:1fr;
+        border-radius:20px 20px 0 0;
+        border-bottom:0;
+        transform:translateY(40px);
+    }
+
+    .carrinho-escolha-foto img{
+        height:auto;
+        min-height:0;
+        max-height:34vh;
+        margin:0 auto;
+    }
+
+    .carrinho-escolha-info{
+        padding:18px 16px 20px;
+    }
+
+    .carrinho-escolha-info h2{
+        font-size:1.5rem;
+    }
+
+    .carrinho-flutuante{
+        right:14px;
+        bottom:14px;
+    }
+
+    .com-carrinho-flutuante .carrinho-aviso{
+        bottom:84px;
+    }
+
+    .botao-comprar{
+        min-height:38px;
+        margin-top:10px;
+    }
+}
+
+@media (prefers-reduced-motion:reduce){
+    .pulsar{
+        animation:none;
+    }
+}

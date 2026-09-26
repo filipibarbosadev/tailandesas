@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <title>Página não encontrada | Mantos FC</title>
+    <!-- Estilos embutidos: esta página pode ser aberta em qualquer endereço do site -->
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            box-sizing: border-box;
+            background: #111;
+            color: #d8dee1;
+            font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            color: #fff;
+            font-size: 1.6rem;
+        }
+
+        p {
+            margin: 0 0 24px;
+            color: #9ca9ae;
+        }
+
+        a {
+            display: inline-block;
+            padding: 13px 22px;
+            border-radius: 10px;
+            background: #22c55e;
+            color: #06140b;
+            font-weight: 800;
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        // Endereços antigos do site → novos (as páginas foram reorganizadas)
+        (() => {
+            const caminho = location.pathname;
+            const regras = [
+                [/\/brasileiros\/brasileiros\.html$/, () => "/"],
+                [/\/brasileiros\/([a-z-]+)\.html$/, (m) => `/clubes/${m[1]}.html`],
+                [/\/europeus\/[a-z-]+\.html$/, () => "/europeus.html"],
+                [/\/restodomundo\.html$/, () => "/resto-do-mundo.html"]
+            ];
+
+            for (const [padrao, destino] of regras) {
+                const m = caminho.match(padrao);
+
+                if (m) {
+                    location.replace(caminho.slice(0, m.index) + destino(m) + location.search + location.hash);
+                    return;
+                }
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <main>
+        <h1>Página não encontrada</h1>
+        <p>O endereço que você abriu não existe ou mudou de lugar.</p>
+        <a id="voltar" href="/">Ir para a página inicial</a>
+    </main>
+
+    <script>
+        // No GitHub Pages de projeto o site fica em /nome-do-repositorio/
+        if (location.hostname.endsWith("github.io")) {
+            const pasta = location.pathname.split("/")[1];
+            document.getElementById("voltar").href = pasta ? `/${pasta}/` : "/";
+        }
+    </script>
+</body>
+
+</html>

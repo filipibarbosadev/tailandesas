@@ -4,339 +4,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Camisas Premium</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <meta name="description" content="Camisas tailandesas premium de times brasileiros, clubes europeus, seleções e clubes do mundo todo.">
+    <title>Mantos FC | Camisas Premium</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="assets/css/base.css" rel="stylesheet">
+    <link href="assets/css/catalogo.css" rel="stylesheet">
+    <link href="assets/css/abas.css" rel="stylesheet">
+    <link href="assets/css/home.css" rel="stylesheet">
+    <link href="assets/css/carrinho.css" rel="stylesheet">
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
-        <div class="container">
+<body class="home-page">
 
-            <a class="navbar-brand fw-bold" href="#">
-                MANTOS <span>FC</span>
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-                <span class="navbar-toggler-icon"></span>
+    <header class="home-header">
+        <div class="home-header-inner">
+            <button class="home-icon-btn" id="home-menu-open" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="home-menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16" />
+                </svg>
             </button>
 
-            <div class="collapse navbar-collapse" id="menu">
+            <a class="home-logo" href="index.html">MANTOS <span>FC</span></a>
 
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#br">Brasileiros</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#eu">Europeus</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#sel">Seleções</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#resto">
-                            Resto do Mundo
-                        </a>
-                    </li>
-                </ul>
-
-                <a href="https://wa.me/553899928529" class="btn btn-success whatsapp-btn" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                    WhatsApp
+            <div class="home-header-actions">
+                <a class="home-icon-btn home-whatsapp" href="https://wa.me/553899928529" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm0 18.15a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.54-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.14-1.18-.06-.1-.22-.16-.47-.29Z" />
+                    </svg>
+                    <span>WhatsApp</span>
                 </a>
 
+                <button class="home-icon-btn home-cart-btn" type="button" data-carrinho-abrir aria-label="Abrir carrinho">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="9" cy="20" r="1.4" />
+                        <circle cx="18" cy="20" r="1.4" />
+                        <path d="M2.5 3.5h2.6l2.3 11.2a1.6 1.6 0 0 0 1.6 1.3h8.6a1.6 1.6 0 0 0 1.6-1.2l1.6-6.8H6.1" />
+                    </svg>
+                    <span class="carrinho-contagem" data-carrinho-quantidade hidden>0</span>
+                </button>
             </div>
-
-        </div>
-    </nav>
-
-    <header class="hero">
-        <div class="hero-overlay"></div>
-
-        <div class="container hero-content">
-
         </div>
     </header>
 
-    <div class="section-divider"></div>
+    <div class="home-menu" id="home-menu" aria-hidden="true">
+        <div class="home-menu-backdrop" data-menu-close></div>
 
-    <section class="categories py-5">
-
-        <div class="container">
-
-            <div class="section-title">
-                <span></span>
-                <h2>Escolha uma categoria</h2>
-                <span></span>
+        <nav class="home-menu-panel" aria-label="Menu principal">
+            <div class="home-menu-head">
+                <span class="home-logo">MANTOS <span>FC</span></span>
+                <button class="home-icon-btn" type="button" aria-label="Fechar menu" data-menu-close>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6L6 18" />
+                    </svg>
+                </button>
             </div>
 
-            <div class="row g-4">
+            <!-- Os links com data-clube também alimentam a lista de camisas e os escudos (data-escudo) da página inicial -->
+            <p class="home-menu-title">Times brasileiros</p>
+            <a class="home-menu-link" href="clubes/atletico-mg.html" data-clube data-escudo="assets/img/escudos/atletico-mg.png">Atlético Mineiro</a>
+            <a class="home-menu-link" href="clubes/cruzeiro.html" data-clube data-escudo="assets/img/escudos/cruzeiro.png">Cruzeiro</a>
+            <a class="home-menu-link" href="clubes/flamengo.html" data-clube data-escudo="assets/img/escudos/flamengo.png">Flamengo</a>
+            <a class="home-menu-link" href="clubes/palmeiras.html" data-clube data-escudo="assets/img/escudos/palmeiras.png">Palmeiras</a>
+            <a class="home-menu-link" href="clubes/corinthians.html" data-clube data-escudo="assets/img/escudos/corinthians.png">Corinthians</a>
+            <a class="home-menu-link" href="clubes/vasco.html" data-clube data-escudo="assets/img/escudos/vasco.png">Vasco</a>
+            <a class="home-menu-link" href="clubes/sao-paulo.html" data-clube data-escudo="assets/img/escudos/sao-paulo.png">São Paulo</a>
 
-                <div class="col-lg-3 col-md-6">
-                    <a href="#br" class="text-decoration-none">
-                        <div class="category-card">
-                            <div class="category-icon">⚽</div>
-                            <h3>Brasileiros</h3>
-                            <p>Os principais clubes do Brasil.</p>
-                        </div>
-                    </a>
+            <p class="home-menu-title">Catálogos</p>
+            <a class="home-menu-link" href="europeus.html">Clubes europeus</a>
+            <a class="home-menu-link" href="selecoes.html">Seleções</a>
+            <a class="home-menu-link" href="resto-do-mundo.html">Resto do mundo</a>
+
+            <a class="home-menu-whatsapp" href="https://wa.me/553899928529" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+        </nav>
+    </div>
+
+    <main>
+        <section class="home-banner">
+            <picture>
+                <source media="(max-width: 767px)" srcset="assets/img/banners/banner-mobile.png" width="1024" height="1536">
+                <img src="assets/img/banners/banner-desktop.png" width="1854" height="848" alt="Camisas tailandesas premium: qualidade 1.1, conforto e durabilidade" fetchpriority="high">
+            </picture>
+        </section>
+
+        <!-- Os ícones já trazem o nome da categoria; o texto fica oculto, só para leitores de tela -->
+        <nav class="home-categories" aria-label="Categorias">
+            <button class="home-category" type="button" data-category="brasileiros" aria-pressed="false">
+                <img class="home-category-icon" src="assets/img/categorias/brasileiros.webp" width="320" height="341" alt="">
+                <span class="visually-hidden">Times Brasileiros</span>
+            </button>
+            <button class="home-category" type="button" data-category="europeus" aria-pressed="false">
+                <img class="home-category-icon" src="assets/img/categorias/europeus.webp" width="320" height="341" alt="">
+                <span class="visually-hidden">Europeus</span>
+            </button>
+            <button class="home-category" type="button" data-category="selecoes" aria-pressed="false">
+                <img class="home-category-icon" src="assets/img/categorias/selecoes.webp" width="320" height="341" alt="">
+                <span class="visually-hidden">Seleções</span>
+            </button>
+            <button class="home-category" type="button" data-category="resto" aria-pressed="false">
+                <img class="home-category-icon" src="assets/img/categorias/resto.webp" width="320" height="341" alt="">
+                <span class="visually-hidden">Resto do Mundo</span>
+            </button>
+            <button class="home-category" type="button" data-category="retro" aria-pressed="false">
+                <img class="home-category-icon" src="assets/img/categorias/retro.webp" width="320" height="341" alt="">
+                <span class="visually-hidden">Camisas Retrô</span>
+            </button>
+        </nav>
+
+        <section class="home-catalog" id="catalogo" aria-labelledby="home-catalog-title">
+            <h2 class="visually-hidden" id="home-catalog-title">Camisas</h2>
+
+            <!-- Só com Times Brasileiros selecionado: escudos + abas do clube (empilhados no celular, uma barra única no desktop) -->
+            <div class="home-clubs-wrap" id="home-clubs-wrap" hidden>
+                <div class="home-clubs-picker">
+                    <div class="home-clubs-head">
+                        <span class="home-clubs-title">Escolha o clube</span>
+                        <span class="home-clubs-hint" id="home-clubs-hint">
+                            Deslize para ver mais
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14M13 6l6 6-6 6" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="home-clubs-scroller" id="home-clubs-scroller">
+                        <div class="home-clubs" id="home-clubs" role="group" aria-label="Filtrar por clube"></div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6">
-                    <a href="#eu" class="text-decoration-none">
-                        <div class="category-card">
-                            <div class="category-icon">🌍</div>
-                            <h3>Europeus</h3>
-                            <p>Os gigantes da Europa.</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <a href="#sel" class="text-decoration-none">
-                        <div class="category-card">
-                            <div class="category-icon">🏆</div>
-                            <h3>Seleções</h3>
-                            <p>As maiores seleções do mundo.</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <a href="#resto" class="text-decoration-none">
-                        <div class="category-card">
-                            <div class="category-icon">🌎</div>
-                            <h3>Resto do Mundo</h3>
-                            <p>Clubes de outros países.</p>
-                        </div>
-                    </a>
-                </div>
-
+                <!-- Abas do clube selecionado, lidas da página do clube (Versão Torcedor, Retrô, Feminina, Infantil) -->
+                <div class="tabs" id="home-model-tabs" role="group" aria-label="Modelo" hidden></div>
             </div>
 
-        </div>
-
-    </section>
-
-    <div class="section-divider"></div>
-
-    <section class="container py-5" id="br">
-
-        <div class="section-header">
-
-            <h2>⚽ Clubes Brasileiros</h2>
-
-            <a class="view-all">
-               
-            </a>
-
-        </div>
-
-        <div class="swiper clubesSwiper">
-
-            <div class="swiper-wrapper">
-
-                <div class="swiper-slide">
-                    <a href="brasileiros/atletico-mg.html" class="text-decoration-none">
-                        <div class="club-card">
-                            <img src="assets/logos/logo atletico.png" class="club-logo">
-                            <h6>Atlético Mineiro</h6>
-                        </div>
-                    </a>
+            <div class="home-toolbar">
+                <div class="home-search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7" />
+                        <path d="m20 20-3.5-3.5" />
+                    </svg>
+                    <label class="visually-hidden" for="home-search">Pesquisar pelo nome do time</label>
+                    <input class="catalog-control" id="home-search" type="search" placeholder="Pesquise seu time..." autocomplete="off">
                 </div>
 
-                <div class="swiper-slide">
-                    <a href="brasileiros/cruzeiro.html" class="text-decoration-none">
-                        <div class="club-card">
-                            <img src="assets/logos/cruzeiro.png" class="club-logo">
-                            <h6>Cruzeiro</h6>
-                        </div>
-                    </a>
+                <!-- Aparece só com a categoria Europeus selecionada -->
+                <div class="home-league" id="home-league-wrap" hidden>
+                    <label class="visually-hidden" for="home-league">Filtrar por liga</label>
+                    <select class="catalog-control" id="home-league">
+                        <option value="all">Todas as ligas</option>
+                    </select>
                 </div>
-
-                <div class="swiper-slide">
-                    <a href="brasileiros/flamengo.html" class="text-decoration-none">
-                        <div class="club-card">
-                            <img src="assets/logos/flamengo.png" class="club-logo">
-                            <h6>Flamengo</h6>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="brasileiros/palmeiras.html" class="text-decoration-none">
-                        <div class="club-card">
-                            <img src="assets/logos/palmeiras.png" class="club-logo">
-                            <h6>Palmeiras</h6>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="brasileiros/corinthians.html" class="text-decoration-none">
-                        <div class="club-card">
-                            <img src="assets/logos/corinthians.png" class="club-logo">
-                            <h6>Corinthians</h6>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="brasileiros/vasco.html" class="text-decoration-none">
-                        <div class="club-card">
-                            <img src="assets/logos/vasco.png" class="club-logo">
-                            <h6>Vasco</h6>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="swiper-slide">
-                    <a href="brasileiros/sao-paulo.html" class="text-decoration-none">
-                        <div class="club-card">
-                            <img src="assets/logos/saopaulo.png" class="club-logo">
-                            <h6>São Paulo</h6>
-                        </div>
-                    </a>
-                </div>
-
             </div>
 
-            <div class="swiper-button-prev brasileiros-prev"></div>
-            <div class="swiper-button-next brasileiros-next"></div>
-            <div class="swiper-pagination brasileiros-pagination"></div>
+            <div class="catalog-meta">
+                <div class="home-results">
+                    <span class="catalog-count" id="home-count" aria-live="polite"></span>
 
-        </div>
+                    <!-- Filtro ativo; o × volta para todas as camisas -->
+                    <span class="home-filter" id="home-filter" hidden>
+                        <span id="home-filter-label">Todas as camisas</span>
+                        <button class="home-clear-filter" id="home-clear-filter" type="button" aria-label="Limpar filtro e ver todas as camisas" title="Ver todas">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+                                <path d="M7 7l10 10M17 7L7 17" />
+                            </svg>
+                        </button>
+                    </span>
+                </div>
 
-    </section>
-
-    <div class="section-divider"></div>
-
-    <section class="container py-5" id="eu">
-
-        <div class="selection-banner europe-banner">
-
-            <div class="selection-content">
-
-                <h2>Os grandes clubes da Europa</h2>
-
-                <p>
-                    Camisas de Barcelona, Real Madrid, Manchester City, Liverpool e outros gigantes.
-                </p>
-
-                <a href="europeus/europeus.html" class="selection-btn">
-                    Explorar clubes europeus
-                </a>
-
+                <label class="home-sort">
+                    <span class="home-sort-label">Ordenar por</span>
+                    <select id="home-sort">
+                        <option value="vendidas">Mais vendidas</option>
+                        <option value="alfabetica">Ordem alfabética</option>
+                    </select>
+                </label>
             </div>
 
-        </div>
+            <p class="home-notice" id="home-notice" hidden>Não foi possível carregar as camisas dos times brasileiros agora.</p>
 
-    </section>
-
-    <div class="section-divider"></div>
-
-    <section class="container py-5" id="sel">
-
-        <div class="selection-banner selecoes-banner">
-
-            <div class="selection-content">
-
-                <h2>Paixão por cada seleção</h2>
-
-                <p>
-                    Encontre camisas do Brasil, Argentina, Portugal, França, Espanha e muito mais.
-                </p>
-
-                <a href="selecoes.html" class="selection-btn">
-                    Explorar seleções
-                </a>
-
+            <div class="catalog-grid" id="home-grid" aria-live="polite">
+                <p class="catalog-empty">Carregando camisas...</p>
             </div>
+            <p class="catalog-empty" id="home-empty" hidden>Nenhuma camisa encontrada com essa busca.</p>
 
-        </div>
+            <nav class="catalog-pagination" id="home-pagination" aria-label="Paginação das camisas" hidden>
+                <button class="catalog-page-button" id="home-previous" type="button">← Anterior</button>
+                <span class="catalog-page-status" id="home-page-status" aria-live="polite"></span>
+                <button class="catalog-page-button" id="home-next" type="button">Próxima →</button>
+            </nav>
+        </section>
+    </main>
 
-    </section>
-
-    <div class="section-divider"></div>
-
-    <section class="container py-5" id="resto">
-
-        <div class="selection-banner resto-banner">
-
-            <div class="selection-content">
-
-                <h2>Clubes de todos os cantos do mundo</h2>
-
-                <p>
-                    Descubra camisas de clubes internacionais e encontre novos mantos para a sua coleção.
-                </p>
-
-                <a href="restodomundo.html" class="selection-btn">
-                    Explorar resto do mundo
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <footer class="bg-dark text-center text-white p-4">
-        © Camisas Premium
+    <footer class="home-footer">
+        <p>© Mantos FC · Camisas tailandesas premium</p>
+        <a href="https://wa.me/553899928529" target="_blank" rel="noopener noreferrer">Fale com a gente no WhatsApp</a>
     </footer>
+
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/componentes/card-camisa.js"></script>
+    <script src="assets/js/componentes/carrinho.js"></script>
+    <!-- Listas de camisas dos catálogos (as dos clubes brasileiros são lidas das páginas em clubes/) -->
+    <script src="assets/js/dados/europeus.js"></script>
+    <script src="assets/js/dados/selecoes.js"></script>
+    <script src="assets/js/dados/resto-do-mundo.js"></script>
+    <script src="assets/js/dados/retro.js"></script>
+    <script src="assets/js/paginas/home.js"></script>
 </body>
-<!-- Seu JavaScript -->
-<script>
-    const swiper = new Swiper(".clubesSwiper", {
-
-        loop: true,
-
-        speed: 700,
-
-        spaceBetween: 25,
-
-        autoplay: {
-            delay: 3500,
-            disableOnInteraction: false,
-        },
-
-        navigation: {
-            nextEl: ".brasileiros-next",
-            prevEl: ".brasileiros-prev",
-        },
-
-        pagination: {
-            el: ".brasileiros-pagination",
-            clickable: true,
-        },
-
-        breakpoints: {
-            0: {
-                slidesPerView: 2,
-                spaceBetween: 15
-            },
-            768: {
-                slidesPerView: 4,
-                spaceBetween: 20
-            },
-            1200: {
-                slidesPerView: 6,
-                spaceBetween: 25
-            }
-        }
-
-    });
-
-</script>
 
 </html>

@@ -1,0 +1,78 @@
+/* Abas de modelo (Versão Torcedor, Retrô, Feminina, Infantil): páginas dos clubes e home */
+
+.brazilian-club-page .tabs,
+.home-page .tabs{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin:0 0 28px;
+    padding:0 0 18px;
+    border-bottom:1px solid #30383d;
+}
+
+.brazilian-club-page .tab-btn,
+.home-page .tab-btn{
+    min-height:42px;
+    padding:0 17px;
+    border:1px solid #354148;
+    border-radius:8px;
+    background:#1a1f22;
+    color:#b9c4c8;
+    cursor:pointer;
+    font-family:"Manrope",sans-serif;
+    font-size:.78rem;
+    font-weight:800;
+    transition:background .2s,border-color .2s,color .2s;
+}
+
+.brazilian-club-page .tab-btn:hover,
+.brazilian-club-page .tab-btn.active,
+.home-page .tab-btn:hover,
+.home-page .tab-btn.active{
+    border-color:#22c55e;
+    background:#202a25;
+    color:#7bf09c;
+}
+
+@media (max-width:680px){
+    .brazilian-club-page .tabs,
+    .home-page .tabs{
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:6px;
+        margin:0 0 22px;
+        padding:6px;
+        border:1px solid #293136;
+        border-radius:14px;
+        background:#161a1d;
+    }
+
+    .brazilian-club-page .tab-btn,
+    .brazilian-club-page .tab-btn:hover,
+    .home-page .tab-btn,
+    .home-page .tab-btn:hover{
+        min-height:44px;
+        padding:0 10px;
+        border-color:transparent;
+        border-radius:10px;
+        background:#1d2327;
+        color:#b9c4c8;
+        font-size:.8rem;
+        letter-spacing:.02em;
+        -webkit-tap-highlight-color:transparent;
+    }
+
+    .brazilian-club-page .tab-btn.active,
+    .home-page .tab-btn.active{
+        border-color:transparent;
+        background:#22c55e;
+        color:#06140b;
+        box-shadow:0 6px 16px rgba(34,197,94,.22);
+    }
+
+    .brazilian-club-page .tab-btn:focus-visible,
+    .home-page .tab-btn:focus-visible{
+        outline:2px solid #22c55e;
+        outline-offset:2px;
+    }
+}

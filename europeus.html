@@ -1,8 +1,63 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-<body style='font-family:Arial;background:#111;color:#fff;padding:40px'>
-    <h1>Clubes Europeus</h1>
-    <p>Página pronta para cadastrar conteúdo.</p><a href='index.html'>Voltar</a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Catálogo de camisas dos principais campeonatos europeus.">
+    <title>Clubes Europeus | Mantos FC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="assets/css/base.css" rel="stylesheet">
+    <link href="assets/css/catalogo.css" rel="stylesheet">
+    <link href="assets/css/carrinho.css" rel="stylesheet">
+</head>
+
+<body class="catalog-page">
+    <main class="catalog-shell">
+        <a class="catalog-top-back" href="index.html">← Menu principal</a>
+
+        <header class="catalog-header">
+            <div>
+                <p class="catalog-kicker">Mantos FC / Catálogo</p>
+                <h1>Clubes Europeus</h1>
+            </div>
+            <p>Explore camisas dos grandes campeonatos da Europa em um só lugar.</p>
+        </header>
+
+        <section class="catalog-toolbar" aria-label="Filtros do catálogo">
+            <label class="visually-hidden" for="catalog-search">Buscar camisa</label>
+            <input class="catalog-control" id="catalog-search" type="search" placeholder="Buscar por clube ou modelo..." autocomplete="off">
+
+            <label class="visually-hidden" for="championship-filter">Filtrar por campeonato</label>
+            <select class="catalog-control" id="championship-filter">
+                <option value="all">Todos os campeonatos</option>
+            </select>
+        </section>
+
+        <div class="catalog-meta">
+            <span>Camisas disponíveis</span>
+            <span class="catalog-count" id="catalog-count" aria-live="polite"></span>
+        </div>
+
+        <section class="catalog-grid" id="catalog-grid" aria-live="polite"></section>
+        <p class="catalog-empty" id="catalog-empty" hidden>Nenhuma camisa encontrada com esses filtros.</p>
+
+        <nav class="catalog-pagination" id="catalog-pagination" aria-label="Paginação do catálogo">
+            <button class="catalog-page-button" id="catalog-previous" type="button">← Anterior</button>
+            <span class="catalog-page-status" id="catalog-page-status" aria-live="polite"></span>
+            <button class="catalog-page-button" id="catalog-next" type="button">Próxima →</button>
+        </nav>
+
+        <a class="catalog-back" href="index.html">← Voltar para a página inicial</a>
+    </main>
+
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/componentes/card-camisa.js"></script>
+    <script src="assets/js/componentes/carrinho.js"></script>
+    <script src="assets/js/dados/europeus.js"></script>
+    <script src="assets/js/paginas/europeus.js"></script>
 </body>
 
 </html>
