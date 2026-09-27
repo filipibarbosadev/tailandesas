@@ -70,6 +70,7 @@
             <a class="home-menu-link" href="clubes/corinthians.html" data-clube data-escudo="assets/img/escudos/corinthians.png">Corinthians</a>
             <a class="home-menu-link" href="clubes/vasco.html" data-clube data-escudo="assets/img/escudos/vasco.png">Vasco</a>
             <a class="home-menu-link" href="clubes/sao-paulo.html" data-clube data-escudo="assets/img/escudos/sao-paulo.png">São Paulo</a>
+            <a class="home-menu-link" href="clubes/santos.html" data-clube data-escudo="assets/img/escudos/santos.png">Santos</a>
 
             <p class="home-menu-title">Catálogos</p>
             <a class="home-menu-link" href="europeus.html">Clubes europeus</a>
@@ -146,12 +147,10 @@
                     <input class="catalog-control" id="home-search" type="search" placeholder="Pesquise seu time..." autocomplete="off">
                 </div>
 
-                <!-- Aparece só com a categoria Europeus selecionada -->
-                <div class="home-league" id="home-league-wrap" hidden>
-                    <label class="visually-hidden" for="home-league">Filtrar por liga</label>
-                    <select class="catalog-control" id="home-league">
-                        <option value="all">Todas as ligas</option>
-                    </select>
+                <!-- Aparece com Europeus (ligas) ou Camisas Retrô (grupos); as opções vêm do home.js -->
+                <div class="home-subfilter" id="home-subfilter-wrap" hidden>
+                    <label class="visually-hidden" id="home-subfilter-label" for="home-subfilter">Filtrar por liga</label>
+                    <select class="catalog-control" id="home-subfilter"></select>
                 </div>
             </div>
 

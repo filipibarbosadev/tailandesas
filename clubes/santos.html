@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Santos</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="../assets/css/base.css" rel="stylesheet">
+    <link href="../assets/css/catalogo.css" rel="stylesheet">
+    <link href="../assets/css/abas.css" rel="stylesheet">
+    <link href="../assets/css/clube.css" rel="stylesheet">
+    <link href="../assets/css/carrinho.css" rel="stylesheet">
+
+</head>
+
+<body class="catalog-page brazilian-club-page">
+
+    <div class="container">
+
+        <a class="catalog-top-back" href="../index.html">← Menu principal</a>
+
+        <h1>Santos</h1>
+
+        <!-- Ainda sem camisas femininas e infantis; para incluir, copie as abas de outro clube (ex.: vasco.html) -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="abrirTab('torcedor', this)">
+                Versão Torcedor
+            </button>
+
+            <button class="tab-btn" onclick="abrirTab('retro', this)">
+                Retrô
+            </button>
+        </div>
+
+        <div id="torcedor" class="tab-content active">
+            <div class="produtos-grid">
+                <div class="produto-card">
+                    <a href="../assets/img/camisas/brasileiros/santos 26-27 home.jpg" target="_blank">
+                        <img src="../assets/img/camisas/brasileiros/santos 26-27 home.jpg" alt="Santos Home 2026/27" class="produto-img">
+                    </a>
+                    <div class="produto-info">
+                        <h4>Santos Home 2026/27</h4>
+                        <p class="descricao">Camisa Tailandesa 1.1.</p>
+                        <div class="preco">R$ <span>119,90</span></div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/img/camisas/brasileiros/santos 26-27 away.jpg" target="_blank">
+                        <img src="../assets/img/camisas/brasileiros/santos 26-27 away.jpg" alt="Santos Away 2026/27" class="produto-img">
+                    </a>
+                    <div class="produto-info">
+                        <h4>Santos Away 2026/27</h4>
+                        <p class="descricao">Camisa Tailandesa 1.1.</p>
+                        <div class="preco">R$ <span>119,90</span></div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/img/camisas/brasileiros/santos 26-27 third.jpg" target="_blank">
+                        <img src="../assets/img/camisas/brasileiros/santos 26-27 third.jpg" alt="Santos Third 2026/27" class="produto-img">
+                    </a>
+                    <div class="produto-info">
+                        <h4>Santos Third 2026/27</h4>
+                        <p class="descricao">Camisa Tailandesa 1.1.</p>
+                        <div class="preco">R$ <span>119,90</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="retro" class="tab-content">
+            <div class="produtos-grid">
+                <div class="produto-card">
+                    <a href="../assets/img/camisas/brasileiros/santos 11-12 home.jpg" target="_blank">
+                        <img src="../assets/img/camisas/brasileiros/santos 11-12 home.jpg" alt="Santos Retrô 2011/12 Home" class="produto-img">
+                    </a>
+                    <div class="produto-info">
+                        <h4>Santos Retrô 2011/12 Home</h4>
+                        <p class="descricao">Camisa Tailandesa 1.1.</p>
+                        <div class="preco">R$ <span>149,90</span></div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/img/camisas/brasileiros/santos 12-13 away retro.jpg" target="_blank">
+                        <img src="../assets/img/camisas/brasileiros/santos 12-13 away retro.jpg" alt="Santos Retrô 2012/13 Listrada" class="produto-img">
+                    </a>
+                    <div class="produto-info">
+                        <h4>Santos Retrô 2012/13 Listrada</h4>
+                        <p class="descricao">Camisa Tailandesa 1.1.</p>
+                        <div class="preco">R$ <span>149,90</span></div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/img/camisas/brasileiros/santos 12-13 away.jpg" target="_blank">
+                        <img src="../assets/img/camisas/brasileiros/santos 12-13 away.jpg" alt="Santos Retrô 2012/13 Azul" class="produto-img">
+                    </a>
+                    <div class="produto-info">
+                        <h4>Santos Retrô 2012/13 Azul</h4>
+                        <p class="descricao">Camisa Tailandesa 1.1.</p>
+                        <div class="preco">R$ <span>149,90</span></div>
+                    </div>
+                </div>
+
+                <div class="produto-card">
+                    <a href="../assets/img/camisas/brasileiros/santos 1998 away.jpg" target="_blank">
+                        <img src="../assets/img/camisas/brasileiros/santos 1998 away.jpg" alt="Santos Retrô 1998 Away" class="produto-img">
+                    </a>
+                    <div class="produto-info">
+                        <h4>Santos Retrô 1998 Away</h4>
+                        <p class="descricao">Camisa Tailandesa 1.1.</p>
+                        <div class="preco">R$ <span>149,90</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p style="margin-top:40px;">
+            <a href="../index.html" style="color:#6f6;">← Voltar</a>
+        </p>
+
+    </div>
+
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/componentes/card-camisa.js"></script>
+    <script src="../assets/js/paginas/clube.js"></script>
+    <script src="../assets/js/componentes/carrinho.js"></script>
+
+</body>
+
+</html>

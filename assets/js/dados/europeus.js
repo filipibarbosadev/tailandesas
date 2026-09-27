@@ -1,5 +1,6 @@
 // Camisas dos clubes europeus: [liga, arquivo]
 // A liga é também o nome da pasta em assets/img/camisas/europeus/<liga>/
+// INÍCIO DA LISTA — gerada por scripts/atualizar-listas.mjs a partir das pastas de imagens; não edite à mão
 const europeusCatalog = [
   ["alemao", "Bayern Munich 26-27 away.jpg"],
   ["alemao", "bayern munich 26-27 home.jpg"],
@@ -46,7 +47,7 @@ const europeusCatalog = [
   ["espanhol", "real betis 26-27 away.jpg"],
   ["espanhol", "real betis 26-27 home.jpg"],
   ["espanhol", "real betis 26-27 third.jpg"],
-  ["espanhol", "real madrid 26-27 away-jpg"],
+  ["espanhol", "real madrid 26-27 away.jpg"],
   ["espanhol", "real madrid 26-27 home.jpg"],
   ["espanhol", "real madrid 26-27 third.jpg"],
   ["espanhol", "real madrid 26-27 treino.jpg"],
@@ -79,6 +80,7 @@ const europeusCatalog = [
   ["ingles", "arsenal 26-27 third.jpg"],
   ["ingles", "aston villa 26-27 away.png"],
   ["ingles", "aston villa 26-27 home.jpg"],
+  ["ingles", "Bournemouth 26-27 home.jpg"],
   ["ingles", "brentford 26-27 home.png"],
   ["ingles", "brighton 26-27 away.png"],
   ["ingles", "brighton 26-27 home.png"],
@@ -86,6 +88,8 @@ const europeusCatalog = [
   ["ingles", "chelsea 26-27 home.jpg"],
   ["ingles", "chelsea 26-27 third.jpg"],
   ["ingles", "everton 26-27 home.jpg"],
+  ["ingles", "fulham 2026-27 home.jpg"],
+  ["ingles", "hull city 2026-27 away.jpg"],
   ["ingles", "liverpool 26-27 away.png"],
   ["ingles", "liverpool 26-27 goleiro.png"],
   ["ingles", "liverpool 26-27 home.png"],
@@ -98,8 +102,8 @@ const europeusCatalog = [
   ["ingles", "manchester united 26-27 treino.jpg"],
   ["ingles", "newcastle 26-27 away.jpg"],
   ["ingles", "newcastle 26-27 home.jpg"],
-  ["ingles", "nottingham 26-27 away.png"],
   ["ingles", "Nottingham forest 26-27 home.png"],
+  ["ingles", "Nottingham Forest 26-27 third.jpg"],
   ["ingles", "tottenham 26-27 away.jpg"],
   ["ingles", "tottenham 26-27 home.png"],
   ["ingles", "tottenham 26-27 third.jpg"],
@@ -110,18 +114,22 @@ const europeusCatalog = [
   ["italiano", "fiorentina 26-27 home.png"],
   ["italiano", "inter de milão 26-27 away.jpg"],
   ["italiano", "inter de milão 26-27 home.jpg"],
-  ["italiano", "inter de milão third.png"],
+  ["italiano", "inter de milão 2026-27 third.png"],
   ["italiano", "juventus 26-27 away.jpg"],
   ["italiano", "juventus 26-27 home.webp"],
   ["italiano", "juventus 26-27 third.jpg"],
+  ["italiano", "lazio 26-27 home.jpg"],
+  ["italiano", "lazio 26-27 third.jpg"],
   ["italiano", "milan 26-27 away.jpg"],
   ["italiano", "Milan 26-27 home.jpg"],
   ["italiano", "milan 26-27 third.jpg"],
   ["italiano", "napoli 26-27 away.jpg"],
   ["italiano", "napoli 26-27 home.jpg"],
   ["italiano", "parma 26-27 home.jpg"],
-  ["italiano", "roma 26-27 away.png"],
-  ["italiano", "roma 26-27 home.png"],
+  ["italiano", "roma 26-27 away.jpg"],
+  ["italiano", "roma 26-27 home.jpg"],
+  ["italiano", "sampdoria 26-27 home.jpg"],
+  ["italiano", "torino 26-27 home.jpg"],
   ["italiano", "venezia.jpeg"],
   ["portugues", "benfica 26-27 away.jpg"],
   ["portugues", "benfica 26-27 home.jpg"],
@@ -145,6 +153,7 @@ const europeusCatalog = [
   ["turco", "galatasaray 26-27 third.png"],
   ["turco", "trabzonspor 26-27 special.jpg"]
 ];
+// FIM DA LISTA
 
 const europeusLabels = {
   alemao: "Campeonato Alemão",
@@ -162,7 +171,7 @@ const displayEuropeuName = (fileName) => {
   // Alguns arquivos vieram com a extensão sem ponto (ex.: "away-jpg")
   const baseName = fileName.replace(/\.[^/.]+$/, "").replace(/-(jpe?g|png|webp)$/i, "");
   return baseName
-    .replace(/\b26-27\b/g, "2026/27")
+    .replace(/\b(?:20)?26-27\b/g, "2026/27")
     .replace(/\b(home|away|third|treino|goleiro|special|aniversary|oktoberfest|pre jogo|pré jogo|aniversario)\b/gi, (match) => {
       const labels = {
         home: "Home",

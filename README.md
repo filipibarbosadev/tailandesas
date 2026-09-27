@@ -11,6 +11,7 @@ selecoes.html               Catálogo de seleções
 resto-do-mundo.html         Catálogo de clubes fora da Europa
 clubes/<clube>.html         Uma página por clube brasileiro, com as abas Torcedor/Retrô/Feminina/Infantil
 404.html                    Página de erro; também redireciona os endereços antigos do site
+scripts/atualizar-listas.mjs  Gera as listas de camisas dos catálogos a partir das pastas de imagens
 
 assets/
   css/
@@ -34,7 +35,8 @@ assets/
     categorias/             Ícones das 5 categorias da home
     escudos/                Escudos dos clubes brasileiros (originais/ tem as versões grandes)
     camisas/                Fotos das camisas
-      brasileiros/  europeus/<liga>/  resto-do-mundo/  retro/<clube>/  selecoes/
+      brasileiros/  europeus/<liga>/  resto-do-mundo/  selecoes/
+      retro/<grupo>/<clube>/   ex.: retro/campeonato espanhol/real madrid/, retro/selecoes/brasil/
 ```
 
 ## Tarefas comuns
@@ -44,7 +46,16 @@ Para uma grade de tamanhos diferente do padrão, acrescente no card algo como `<
 
 **Clube brasileiro novo:** crie `clubes/<clube>.html` a partir de uma página existente, coloque o escudo em `assets/img/escudos/` e adicione o link no menu do `index.html` com `data-clube` e `data-escudo`.
 
-**Camisa europeia, seleção, resto do mundo ou retrô internacional:** coloque a foto na pasta da categoria e acrescente o nome do arquivo na lista correspondente em `assets/js/dados/`. O nome exibido é montado a partir do nome do arquivo (ex.: `real madrid 26-27 home.jpg` → "Real Madrid 2026/27 Home").
+**Camisa europeia, seleção, resto do mundo ou retrô internacional:** coloque a foto na pasta da categoria e, na pasta do projeto, rode:
+
+```
+node scripts/atualizar-listas.mjs
+```
+
+O script atualiza as listas em `assets/js/dados/` e mostra quantas camisas entraram e saíram. O nome exibido é montado a partir do nome do arquivo, no formato "time temporada modelo" (ex.: `real madrid 26-27 home.jpg` → "Real Madrid 2026/27 Home"; `milan 97-98 special.jpg` → "Milan Retrô 1997/98 Especial").
+
+- Retrô: cada camisa fica em `retro/<grupo>/<clube>/`. Nas pastas `outros`/`outros clubes` o nome do time sai do nome do arquivo.
+- Grupo ou clube novo cujo nome precise de acento ou sigla (ex.: "fenerbahce" → "Fenerbahçe", "psg" → "PSG"): acrescente em `retroGrupos` ou `retroNomes`, em `assets/js/dados/retro.js`.
 
 **Tamanhos, personalização (valor e limite de letras/dígitos), número do WhatsApp e nome da loja:** no início de `assets/js/componentes/carrinho.js` (`CONFIG`). O valor da personalização fica em centavos (`3000` = R$ 30,00).
 

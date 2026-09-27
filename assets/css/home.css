@@ -481,7 +481,7 @@
     min-width:0;
 }
 
-.home-league{
+.home-subfilter{
     flex:0 0 280px;
 }
 
@@ -833,7 +833,7 @@
         white-space:nowrap;
     }
 
-    .home-league{
+    .home-subfilter{
         flex:none;
     }
 }

@@ -36,8 +36,14 @@ const teamFromFileName = (fileName) => fileName
   .replace(/\.[^/.]+$/, "")
   .split(/\s+(?=\d|(?:home|away|third|treino|goleiro|special|aniversary|aniversario|oktoberfest|pre jogo|pré jogo)\b)/i)[0];
 
-const createHomeProduct = ({ category, subcategory = "", tab = "", retro = false, team, league, title, image, description = "Camisa Tailandesa 1.1.", price = "R$ 119,90" }) => {
+// Mesmo time escrito de formas diferentes em cada catálogo
+const homeTeamAliases = {
+  "boca jrs": "boca juniors"
+};
+
+const createHomeProduct = ({ category, subcategory = "", tab = "", retro = false, retroGroup = "", team, league, title, image, description = "Camisa Tailandesa 1.1.", price = "R$ 119,90", searchExtra = "" }) => {
   const normalizedTitle = normalizarTexto(title);
+  const normalizedTeam = normalizarTexto(team);
   // Modelos atuais: fora retrô, feminina e infantil
   const current = !retro && !["feminina", "infantil", "kids"].includes(tab);
 
@@ -46,7 +52,9 @@ const createHomeProduct = ({ category, subcategory = "", tab = "", retro = false
     subcategory,
     tab,
     retro,
-    team: normalizarTexto(team),
+    // grupo no seletor de Camisas Retrô: "brasileiros", "campeonato ingles", "selecoes"...
+    retroGroup,
+    team: homeTeamAliases[normalizedTeam] || normalizedTeam,
     current,
     home: current && /\bhome\b/.test(normalizedTitle) && !/goleiro/.test(normalizedTitle),
     // grade de tamanhos usada no carrinho
@@ -56,30 +64,50 @@ const createHomeProduct = ({ category, subcategory = "", tab = "", retro = false
     image,
     description,
     price,
-    searchable: normalizarTexto(`${title} ${league}`)
+    searchable: normalizarTexto(`${title} ${league} ${searchExtra}`)
   };
 };
 
 // "Mais vendidas": o site não tem dados de venda, então a ordem segue esta lista de times (edite à vontade).
-// Vêm primeiro as camisas home atuais desses times, na ordem da lista; depois os outros modelos atuais deles; depois o restante.
+// Vêm primeiro as camisas home atuais desses times, na ordem da lista; depois os outros modelos atuais deles;
+// depois as retrô desses times, intercaladas (uma de cada time por vez, as home primeiro); depois o restante.
 const homeBestSellerTeams = [
   "Atlético Mineiro", "Cruzeiro", "Flamengo", "Corinthians", "Palmeiras",
   "Real Madrid", "Barcelona", "Manchester City", "PSG", "Liverpool", "Chelsea", "Milan", "Inter de Milão", "Juventus",
-  "São Paulo", "Vasco", "Manchester United", "Arsenal", "Bayern Munich",
+  "São Paulo", "Vasco", "Santos", "Manchester United", "Arsenal", "Bayern Munich",
   "Brasil", "Argentina", "Portugal",
-  "Boca Jrs", "River Plate", "Inter Miami", "Al Nassr"
+  "Boca Juniors", "River Plate", "Inter Miami", "Al Nassr"
 ];
 
 const sortByBestSellers = (products) => {
   const ranks = new Map(homeBestSellerTeams.map((team, index) => [normalizarTexto(team), index]));
+  const total = homeBestSellerTeams.length;
+
+  // Posição de cada retrô dentro do seu time (home primeiro), para intercalar os times
+  const retroTurn = new Map();
+  const turnsPerTeam = new Map();
+  products
+    .filter((product) => product.retro && ranks.has(product.team))
+    .map((product, index) => ({ product, index, homeFirst: /\bhome\b/.test(normalizarTexto(product.title)) ? 0 : 1 }))
+    .sort((a, b) => a.homeFirst - b.homeFirst || a.index - b.index)
+    .forEach(({ product }) => {
+      const turn = turnsPerTeam.get(product.team) || 0;
+      turnsPerTeam.set(product.team, turn + 1);
+      retroTurn.set(product, turn);
+    });
+
   const score = (product) => {
     const rank = ranks.get(product.team);
 
-    if (rank === undefined || !product.current) {
+    if (rank === undefined) {
       return Number.MAX_SAFE_INTEGER;
     }
 
-    return (product.home ? 0 : homeBestSellerTeams.length) + rank;
+    if (product.current) {
+      return (product.home ? 0 : total) + rank;
+    }
+
+    return retroTurn.has(product) ? total * (2 + retroTurn.get(product)) + rank : Number.MAX_SAFE_INTEGER;
   };
 
   return products
@@ -129,6 +157,7 @@ const loadBrasileiros = async () => {
           subcategory: key,
           tab,
           retro: tab === "retro",
+          retroGroup: tab === "retro" ? "brasileiros" : "",
           team: club,
           league: `${club} · ${tabLabel}`,
           title: cleanText(card.querySelector("h4"), club),
@@ -177,15 +206,21 @@ const loadOtherCatalogs = () => [
     title: formatRestoName(fileName),
     image: restoImagem(fileName)
   })),
-  ...retroCatalog.map(([club, fileName]) => createHomeProduct({
-    category: "retro",
-    retro: true,
-    team: retroClubs[club] || club,
-    league: `${retroClubs[club] || club} · Retrô`,
-    title: formatRetroName(club, fileName),
-    image: retroImagem(club, fileName),
-    price: retroPrice
-  }))
+  ...retroCatalog.map(([grupo, clube, arquivo]) => {
+    const time = retroTime(grupo, clube, arquivo);
+
+    return createHomeProduct({
+      category: "retro",
+      retro: true,
+      retroGroup: normalizarTexto(grupo),
+      team: time,
+      league: `${time} · Retrô`,
+      title: formatRetroName(grupo, clube, arquivo),
+      image: retroImagem(grupo, clube, arquivo),
+      price: retroPrice,
+      searchExtra: retroGrupoNome(grupo)
+    });
+  })
 ];
 
 const createHomeCard = (product) => criarCardCamisa({
@@ -212,7 +247,8 @@ const renderHome = () => {
     const matchesCategory = homeCategory === "all"
       || product.category === homeCategory
       || (homeCategory === "retro" && product.retro);
-    const matchesSubcategory = homeSubcategory === "all" || product.subcategory === homeSubcategory;
+    const productSubcategory = homeCategory === "retro" ? product.retroGroup : product.subcategory;
+    const matchesSubcategory = homeSubcategory === "all" || productSubcategory === homeSubcategory;
     const matchesTab = homeTab === "all" || product.tab === homeTab;
     return matchesCategory && matchesSubcategory && matchesTab && (!query || product.searchable.includes(query));
   });
@@ -233,12 +269,51 @@ const renderHome = () => {
   next.disabled = homePage === totalPages;
 };
 
+// Grupos do seletor de Camisas Retrô, na ordem das pastas
+const homeRetroGroups = () => [
+  ["brasileiros", "Times brasileiros"],
+  ...[...new Map(retroCatalog.map(([grupo]) => [normalizarTexto(grupo), retroGrupoNome(grupo)]))]
+];
+
+// Seletor abaixo da busca: ligas nos Europeus, grupos nas Camisas Retrô
+const homeSubfilter = () => {
+  if (homeCategory === "europeus") {
+    return { label: "Filtrar por liga", options: [["all", "Todas as ligas"], ...Object.entries(europeusLabels)] };
+  }
+
+  if (homeCategory === "retro") {
+    return { label: "Filtrar retrô por campeonato ou seleção", options: [["all", "Todas as retrô"], ...homeRetroGroups()] };
+  }
+
+  return null;
+};
+
 const getHomeFilterLabel = () => {
   if (homeSubcategory === "all") {
     return homeCategoryLabels[homeCategory] || "Todas as camisas";
   }
 
-  return homeCategory === "europeus" ? europeusLabels[homeSubcategory] : homeClubNames[homeSubcategory];
+  if (homeCategory === "brasileiros") {
+    return homeClubNames[homeSubcategory];
+  }
+
+  const option = homeSubfilter().options.find(([value]) => value === homeSubcategory);
+  return homeCategory === "retro" ? `Retrô · ${option[1]}` : option[1];
+};
+
+const renderHomeSubfilter = () => {
+  const subfilter = homeSubfilter();
+  const select = document.getElementById("home-subfilter");
+
+  document.getElementById("home-subfilter-wrap").hidden = !subfilter;
+
+  if (!subfilter) {
+    return;
+  }
+
+  document.getElementById("home-subfilter-label").textContent = subfilter.label;
+  select.innerHTML = subfilter.options.map(([value, label]) => `<option value="${escaparHtml(value)}">${escaparHtml(label)}</option>`).join("");
+  select.value = homeSubcategory;
 };
 
 const getClubTabs = (club) => (homeClubTabs[club] && homeClubTabs[club].length
@@ -273,8 +348,7 @@ const setHomeFilter = (category, subcategory = "all", tab = "all") => {
     button.setAttribute("aria-pressed", String(button.dataset.club === subcategory));
   });
 
-  document.getElementById("home-league").value = category === "europeus" ? subcategory : "all";
-  document.getElementById("home-league-wrap").hidden = category !== "europeus";
+  renderHomeSubfilter();
   document.getElementById("home-clubs-wrap").hidden = category !== "brasileiros";
   document.getElementById("home-filter").hidden = category === "all";
   document.getElementById("home-filter-label").textContent = getHomeFilterLabel();
@@ -387,7 +461,7 @@ const setupHomeMenu = () => {
 
 document.addEventListener("DOMContentLoaded", async () => {
   const search = document.getElementById("home-search");
-  const league = document.getElementById("home-league");
+  const subfilter = document.getElementById("home-subfilter");
   const previous = document.getElementById("home-previous");
   const next = document.getElementById("home-next");
 
@@ -414,11 +488,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderHome();
   });
 
-  league.insertAdjacentHTML("beforeend", Object.entries(europeusLabels)
-    .map(([value, label]) => `<option value="${value}">${label}</option>`)
-    .join(""));
-
-  league.addEventListener("change", () => setHomeFilter("europeus", league.value));
+  subfilter.addEventListener("change", () => setHomeFilter(homeCategory, subfilter.value));
 
   previous.addEventListener("click", () => {
     homePage -= 1;
