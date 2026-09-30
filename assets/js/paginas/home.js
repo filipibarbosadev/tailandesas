@@ -68,9 +68,36 @@ const createHomeProduct = ({ category, subcategory = "", tab = "", retro = false
   };
 };
 
-// "Mais vendidas": o site não tem dados de venda, então a ordem segue esta lista de times (edite à vontade).
-// Vêm primeiro as camisas home atuais desses times, na ordem da lista; depois os outros modelos atuais deles;
-// depois as retrô desses times, intercaladas (uma de cada time por vez, as home primeiro); depois o restante.
+// "Mais relevantes": o site não tem dados de venda, então a ordem segue as duas listas abaixo (edite à vontade).
+const homeLaunchPath = (image) => decodeURIComponent(new URL(image, location.href).pathname)
+  .replace(/^.*?(assets\/img\/camisas\/.*)$/, "$1");
+
+// Camisas específicas que vêm primeiro que tudo, nesta ordem exata; o restante segue homeBestSellerTeams abaixo.
+const homeHighlightImages = [
+  "assets/img/camisas/brasileiros/atletico mineiro 26-27 third.png",
+  "assets/img/camisas/brasileiros/ATLETICO MINEIRO 26-27 HOME.jpg",
+  "assets/img/camisas/brasileiros/Cruzeiro2627home.jpg",
+  "assets/img/camisas/brasileiros/cruzeiro2627away.jpg",
+  "assets/img/camisas/brasileiros/FLAMENGO 26-27 HOME.jpg",
+  "assets/img/camisas/brasileiros/FLAMENGO 26-27 AWAY.jpg",
+  "assets/img/camisas/brasileiros/flamengo26-27 third.png",
+  "assets/img/camisas/brasileiros/corinthians 26-27 third.png",
+  "assets/img/camisas/brasileiros/CORINTHIANS 26-27 HOME.jpg",
+  "assets/img/camisas/brasileiros/palmeiras26-27third.png",
+  "assets/img/camisas/brasileiros/PALMEIRAS HOME.jpg",
+  "assets/img/camisas/europeus/frances/psg 26-27 home.jpg",
+  "assets/img/camisas/europeus/espanhol/real madrid 26-27 home.jpg",
+  "assets/img/camisas/europeus/espanhol/barcelona 26-27 home.jpg",
+  "assets/img/camisas/europeus/ingles/chelsea 26-27 home.jpg",
+  "assets/img/camisas/europeus/ingles/liverpool 26-27 home.png",
+  "assets/img/camisas/europeus/italiano/Milan 26-27 home.jpg",
+  "assets/img/camisas/europeus/italiano/inter de milão 26-27 home.jpg"
+];
+
+const homeHighlightRank = new Map(homeHighlightImages.map((path, index) => [path, index]));
+
+// Depois dos destaques: primeiro as camisas home atuais desses times, na ordem da lista; depois os outros modelos
+// atuais deles; depois as retrô desses times, intercaladas (uma de cada time por vez, as home primeiro); depois o restante.
 const homeBestSellerTeams = [
   "Atlético Mineiro", "Cruzeiro", "Flamengo", "Corinthians", "Palmeiras",
   "Real Madrid", "Barcelona", "Manchester City", "PSG", "Liverpool", "Chelsea", "Milan", "Inter de Milão", "Juventus",
@@ -82,6 +109,7 @@ const homeBestSellerTeams = [
 const sortByBestSellers = (products) => {
   const ranks = new Map(homeBestSellerTeams.map((team, index) => [normalizarTexto(team), index]));
   const total = homeBestSellerTeams.length;
+  const highlightCount = homeHighlightImages.length;
 
   // Posição de cada retrô dentro do seu time (home primeiro), para intercalar os times
   const retroTurn = new Map();
@@ -97,6 +125,12 @@ const sortByBestSellers = (products) => {
     });
 
   const score = (product) => {
+    const highlightRank = homeHighlightRank.get(homeLaunchPath(product.image));
+
+    if (highlightRank !== undefined) {
+      return highlightRank;
+    }
+
     const rank = ranks.get(product.team);
 
     if (rank === undefined) {
@@ -104,10 +138,10 @@ const sortByBestSellers = (products) => {
     }
 
     if (product.current) {
-      return (product.home ? 0 : total) + rank;
+      return highlightCount + (product.home ? 0 : total) + rank;
     }
 
-    return retroTurn.has(product) ? total * (2 + retroTurn.get(product)) + rank : Number.MAX_SAFE_INTEGER;
+    return retroTurn.has(product) ? highlightCount + total * (2 + retroTurn.get(product)) + rank : Number.MAX_SAFE_INTEGER;
   };
 
   return products
@@ -118,6 +152,15 @@ const sortByBestSellers = (products) => {
 
 const sortAlphabetically = (products) => [...products].sort((a, b) => a.team.localeCompare(b.team, "pt-BR")
   || a.title.localeCompare(b.title, "pt-BR", { numeric: true }));
+
+// "Lançamentos": posição de cada foto em lancamentosOrder (assets/js/dados/lancamentos.js), da mais nova para a mais antiga.
+// A lista é gerada pelo scripts/atualizar-listas.mjs a partir da data de modificação de cada arquivo.
+const homeLaunchRank = new Map(lancamentosOrder.map((path, index) => [path, index]));
+
+const sortByLaunch = (products) => products
+  .map((product, index) => ({ product, index, rank: homeLaunchRank.get(homeLaunchPath(product.image)) ?? -1 }))
+  .sort((a, b) => b.rank - a.rank || a.index - b.index)
+  .map(({ product }) => product);
 
 // As camisas dos clubes brasileiros ficam no HTML de cada clube; lemos as páginas listadas no menu
 const loadBrasileiros = async () => {
@@ -253,8 +296,10 @@ const renderHome = () => {
     return matchesCategory && matchesSubcategory && matchesTab && (!query || product.searchable.includes(query));
   });
 
-  // homeProducts já está na ordem de "Mais vendidas"
-  const ordered = homeSort === "alfabetica" ? sortAlphabetically(results) : results;
+  // homeProducts já está na ordem de "Mais relevantes"
+  const ordered = homeSort === "alfabetica" ? sortAlphabetically(results)
+    : homeSort === "lancamentos" ? sortByLaunch(results)
+    : results;
   const totalPages = Math.max(1, Math.ceil(ordered.length / homePageSize));
   homePage = Math.min(homePage, totalPages);
   const start = (homePage - 1) * homePageSize;

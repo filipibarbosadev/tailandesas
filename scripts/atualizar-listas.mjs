@@ -4,8 +4,8 @@
 // Reescreve o trecho entre "INÍCIO DA LISTA" e "FIM DA LISTA" de cada arquivo em assets/js/dados/.
 // As camisas dos clubes brasileiros continuam sendo cadastradas nas páginas clubes/*.html;
 // o script só avisa quando existe foto em assets/img/camisas/brasileiros/ que nenhuma página usa.
-import { readdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { readdirSync, readFileSync, writeFileSync, existsSync, statSync } from "node:fs";
+import { dirname, join, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -72,6 +72,46 @@ for (const [arquivo, nome, itens] of listas) {
   writeFileSync(caminho, antes + lista + depois);
   console.log(`${arquivo}: ${itens.length} camisas (+${entraram} / -${sairam})`);
 }
+
+// Ordem de "Lançamentos": mantém a ordem já registrada e acrescenta ao final as fotos novas
+// (de qualquer categoria, incluindo brasileiros), ordenadas entre si pela data de modificação do arquivo.
+const arquivoLancamentos = join(raiz, "assets/js/dados/lancamentos.js");
+const textoLancamentos = readFileSync(arquivoLancamentos, "utf8");
+const inicioLancamentos = textoLancamentos.match(INICIO);
+const fimLancamentos = textoLancamentos.match(FIM);
+
+if (!inicioLancamentos || !fimLancamentos) {
+  throw new Error(`Marcadores "INÍCIO DA LISTA"/"FIM DA LISTA" não encontrados em assets/js/dados/lancamentos.js`);
+}
+
+const listarImagens = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((entrada) => {
+  const caminho = join(dir, entrada.name);
+  if (entrada.isDirectory()) return listarImagens(caminho);
+  return entrada.isFile() && ehImagem(entrada.name) ? [caminho] : [];
+});
+
+const caminhoRelativo = (caminho) => caminho.slice(raiz.length + 1).split(sep).join("/");
+const mtimePorCaminho = new Map(listarImagens(camisas).map((caminho) => [caminhoRelativo(caminho), statSync(caminho).mtimeMs]));
+
+const blocoAnteriorLancamentos = textoLancamentos.slice(inicioLancamentos.index + inicioLancamentos[0].length, fimLancamentos.index);
+const ordemAnterior = [...blocoAnteriorLancamentos.matchAll(/^\s*(".*"),?$/gm)].map((m) => JSON.parse(m[1]));
+
+const ordemMantida = ordemAnterior.filter((caminho) => mtimePorCaminho.has(caminho));
+const lancamentosNovos = [...mtimePorCaminho.keys()]
+  .filter((caminho) => !ordemAnterior.includes(caminho))
+  .sort((a, b) => mtimePorCaminho.get(a) - mtimePorCaminho.get(b));
+
+const ordemFinal = [...ordemMantida, ...lancamentosNovos];
+const listaLancamentos = ordemFinal.length
+  ? `const lancamentosOrder = [\n${ordemFinal.map((item) => `  ${formatar(item)}`).join(",\n")}\n];\n`
+  : `const lancamentosOrder = [];\n`;
+
+writeFileSync(
+  arquivoLancamentos,
+  textoLancamentos.slice(0, inicioLancamentos.index + inicioLancamentos[0].length) + listaLancamentos + textoLancamentos.slice(fimLancamentos.index)
+);
+
+console.log(`assets/js/dados/lancamentos.js: ${ordemFinal.length} fotos no total (+${lancamentosNovos.length} lançamentos novos / -${ordemAnterior.length - ordemMantida.length} removidas)`);
 
 // Fotos de clubes brasileiros que nenhuma página em clubes/ usa
 const usadas = new Set();

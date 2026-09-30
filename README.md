@@ -27,7 +27,7 @@ assets/
       card-camisa.js        Card de camisa (home e catálogos)
       carrinho.js           Carrinho de compras e envio pelo WhatsApp
     dados/                  Listas de camisas de cada catálogo
-      europeus.js  selecoes.js  resto-do-mundo.js  retro.js
+      europeus.js  selecoes.js  resto-do-mundo.js  retro.js  lancamentos.js
     paginas/                Comportamento de cada página
       home.js  europeus.js  selecoes.js  resto-do-mundo.js  clube.js
   img/
@@ -43,6 +43,7 @@ assets/
 
 **Camisa de clube brasileiro:** coloque a foto em `assets/img/camisas/brasileiros/` e copie um bloco `produto-card` dentro da aba certa em `clubes/<clube>.html`. A home e o carrinho leem essas páginas automaticamente.
 Para uma grade de tamanhos diferente do padrão, acrescente no card algo como `<div class="tamanhos">P • M • G • GG</div>`.
+Rode `node scripts/atualizar-listas.mjs` depois para essa foto entrar na ordenação "Lançamentos" (veja abaixo).
 
 **Clube brasileiro novo:** crie `clubes/<clube>.html` a partir de uma página existente, coloque o escudo em `assets/img/escudos/` e adicione o link no menu do `index.html` com `data-clube` e `data-escudo`.
 
@@ -61,7 +62,9 @@ O script atualiza as listas em `assets/js/dados/` e mostra quantas camisas entra
 
 **Preço das retrô internacionais:** `retroPrice` em `assets/js/dados/retro.js`. Os demais preços estão em cada card (clubes) ou no padrão de `criarCardCamisa` (R$ 119,90).
 
-**Ordem de "Mais vendidas":** lista `homeBestSellerTeams` em `assets/js/paginas/home.js`.
+**Ordem de "Mais relevantes":** lista `homeHighlightImages` (camisas específicas, no topo, nesta ordem) e depois `homeBestSellerTeams` (por time) em `assets/js/paginas/home.js`.
+
+**Ordem de "Lançamentos":** automática, não precisa editar nada. O `scripts/atualizar-listas.mjs` registra em `assets/js/dados/lancamentos.js` a ordem em que cada foto (de qualquer categoria, inclusive dos clubes brasileiros) foi adicionada, usando a data de modificação do arquivo; a home mostra primeiro as fotos mais recentes.
 
 ## Testar no computador
 
