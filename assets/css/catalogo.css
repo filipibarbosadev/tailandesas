@@ -2,7 +2,7 @@
 
 .catalog-page{
     min-height:100vh;
-    background:#111;
+    background:#0b0b0c;
     color:#fff;
 }
 
@@ -16,7 +16,7 @@
     display:inline-flex;
     align-items:center;
     margin-bottom:34px;
-    color:#9ca9ae;
+    color:#a3a3a8;
     font-family:"Manrope",sans-serif;
     font-size:.82rem;
     font-weight:700;
@@ -25,7 +25,7 @@
 }
 
 .catalog-top-back:hover{
-    color:#7bf09c;
+    color:#dcc39a;
     transform:translateX(-3px);
 }
 
@@ -39,7 +39,7 @@
 
 .catalog-kicker{
     margin:0 0 8px;
-    color:#22c55e;
+    color:#c6a06a;
     font-family:"Manrope",sans-serif;
     font-size:.78rem;
     font-weight:800;
@@ -59,7 +59,7 @@
 .catalog-header p{
     max-width:420px;
     margin:0;
-    color:#aeb6bb;
+    color:#b3b3b8;
     font-family:"Manrope",sans-serif;
     font-size:.95rem;
     line-height:1.6;
@@ -75,10 +75,10 @@
 .catalog-control{
     width:100%;
     min-height:52px;
-    border:1px solid #30383d;
+    border:1px solid #2a2a2d;
     border-radius:10px;
     outline:none;
-    background:#1a1f22;
+    background:#151517;
     color:#fff;
     font-family:"Manrope",sans-serif;
     font-size:.95rem;
@@ -94,12 +94,12 @@ select.catalog-control{
 }
 
 .catalog-control::placeholder{
-    color:#7f8a90;
+    color:#85858a;
 }
 
 .catalog-control:focus{
-    border-color:#22c55e;
-    box-shadow:0 0 0 3px rgba(34,197,94,.14);
+    border-color:#c6a06a;
+    box-shadow:0 0 0 3px rgba(198,160,106,.14);
 }
 
 .catalog-meta{
@@ -108,13 +108,13 @@ select.catalog-control{
     justify-content:space-between;
     gap:16px;
     margin-bottom:16px;
-    color:#849097;
+    color:#8a8a8f;
     font-family:"Manrope",sans-serif;
     font-size:.82rem;
 }
 
 .catalog-count{
-    color:#d8dee1;
+    color:#dcdcdf;
     font-weight:700;
 }
 
@@ -127,16 +127,16 @@ select.catalog-control{
 .catalog-card{
     min-width:0;
     overflow:hidden;
-    border:1px solid #293136;
-    border-radius:12px;
-    background:#191e21;
+    border:1px solid #232326;
+    border-radius:14px;
+    background:#0f1013;
     box-shadow:0 12px 28px rgba(0,0,0,.18);
     transition:transform .25s,border-color .25s,box-shadow .25s;
 }
 
 .catalog-card:hover{
     transform:translateY(-5px);
-    border-color:rgba(34,197,94,.65);
+    border-color:rgba(198,160,106,.65);
     box-shadow:0 18px 36px rgba(0,0,0,.32);
 }
 
@@ -144,7 +144,7 @@ select.catalog-control{
     display:block;
     aspect-ratio:1 / 1.08;
     overflow:hidden;
-    background:#252c30;
+    background:linear-gradient(180deg,#2c2c2e,#1a1a1c);
 }
 
 .catalog-card-media img{
@@ -164,11 +164,11 @@ select.catalog-control{
 }
 
 .catalog-card-league{
-    color:#22c55e;
+    color:#c6a06a;
     font-family:"Manrope",sans-serif;
     font-size:.68rem;
     font-weight:800;
-    letter-spacing:.08em;
+    letter-spacing:.12em;
     text-transform:uppercase;
 }
 
@@ -184,25 +184,27 @@ select.catalog-control{
 
 .catalog-card p{
     margin:0;
-    color:#89949a;
+    color:#8e8e93;
     font-family:"Manrope",sans-serif;
     font-size:.75rem;
 }
 
 .catalog-card strong{
     display:block;
-    margin-top:12px;
-    color:#67e08a;
+    margin-top:14px;
+    color:#d9b77f;
     font-family:"Manrope",sans-serif;
-    font-size:1.05rem;
+    font-size:1.3rem;
+    font-weight:800;
+    letter-spacing:-.01em;
 }
 
 .catalog-empty{
     grid-column:1 / -1;
     padding:54px 20px;
-    border:1px dashed #39454b;
+    border:1px dashed #38383b;
     border-radius:12px;
-    color:#aeb6bb;
+    color:#b3b3b8;
     font-family:"Manrope",sans-serif;
     text-align:center;
 }
@@ -219,10 +221,10 @@ select.catalog-control{
     min-width:116px;
     min-height:42px;
     padding:0 16px;
-    border:1px solid #354148;
+    border:1px solid #333336;
     border-radius:8px;
-    background:#1a1f22;
-    color:#e8edef;
+    background:#151517;
+    color:#ececee;
     cursor:pointer;
     font-family:"Manrope",sans-serif;
     font-size:.78rem;
@@ -232,9 +234,9 @@ select.catalog-control{
 }
 
 .catalog-page-button:hover:not(:disabled){
-    border-color:#22c55e;
-    background:#202a25;
-    color:#7bf09c;
+    border-color:#c6a06a;
+    background:#241e15;
+    color:#dcc39a;
 }
 
 .catalog-page-button:disabled{
@@ -244,7 +246,7 @@ select.catalog-control{
 
 .catalog-page-status{
     min-width:100px;
-    color:#b9c4c8;
+    color:#bfbfc4;
     font-family:"Manrope",sans-serif;
     font-size:.8rem;
     font-weight:700;
@@ -254,7 +256,7 @@ select.catalog-control{
 .catalog-back{
     display:inline-block;
     margin-top:28px;
-    color:#78e697;
+    color:#dfc79f;
     font-family:"Manrope",sans-serif;
     font-size:.9rem;
     font-weight:700;
@@ -262,7 +264,7 @@ select.catalog-control{
 }
 
 .catalog-back:hover{
-    color:#b7f6c8;
+    color:#ece0c9;
 }
 
 @media (max-width:960px){
