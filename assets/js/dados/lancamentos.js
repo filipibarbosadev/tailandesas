@@ -1161,6 +1161,12 @@ const lancamentosOrder = [
   "assets/img/camisas/brasileiros/atletico mineiro 2008 retro.jpg",
   "assets/img/camisas/brasileiros/atletico mineiro 2008 retro home.jpg",
   "assets/img/camisas/brasileiros/atletico mineiro 1995 retro home.jpg",
-  "assets/img/camisas/brasileiros/atletico mineiro 1971 retro home.jpg"
+  "assets/img/camisas/brasileiros/atletico mineiro 1971 retro home.jpg",
+  "assets/img/camisas/brasileiros/cruzeiro adidas originals.jpg",
+  "assets/img/camisas/brasileiros/cruzeiro adidas originals feminina.jpg",
+  "assets/img/camisas/brasileiros/atletico mineiro third feminina.jpg",
+  "assets/img/camisas/brasileiros/cruzeiro 2003 home.jpeg",
+  "assets/img/camisas/brasileiros/cruzeiro 2011 home.jpeg",
+  "assets/img/camisas/brasileiros/cruzeiro 2017 retro.jpg"
 ];
 // FIM DA LISTA

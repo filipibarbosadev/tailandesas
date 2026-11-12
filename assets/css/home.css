@@ -209,6 +209,60 @@
     color:#1a1409;
 }
 
+/* Faixa da promoção (preenchida pelo home.js a partir de assets/js/promocao.js) */
+
+.home-promo{
+    box-sizing:border-box;
+    width:min(1240px,calc(100% - 32px));
+    margin:16px auto 0;
+    display:grid;
+    grid-template-columns:auto repeat(4,minmax(0,1fr));
+    align-items:center;
+    gap:10px 22px;
+    padding:12px 20px;
+    border:1px solid rgba(198,160,106,.45);
+    border-radius:14px;
+    background:linear-gradient(90deg,#1b1711,#0f0f11 70%);
+}
+
+.home-promo[hidden]{
+    display:none;
+}
+
+.home-promo-titulo{
+    color:#fff;
+    font-family:"Barlow Condensed",sans-serif;
+    font-size:1.5rem;
+    font-weight:700;
+    letter-spacing:.04em;
+    line-height:1;
+    text-transform:uppercase;
+    white-space:nowrap;
+}
+
+.home-promo-item{
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+}
+
+.home-promo-item small{
+    color:#8a8a8f;
+    font-size:.62rem;
+    font-weight:800;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+}
+
+.home-promo-item strong{
+    color:#dcc39a;
+    font-family:"Barlow Condensed",sans-serif;
+    font-size:1.1rem;
+    font-weight:600;
+    line-height:1.1;
+}
+
 /* Banner */
 
 .home-banner{
@@ -766,6 +820,19 @@
     .home-banner,
     .home-catalog{
         width:calc(100% - 24px);
+    }
+
+    .home-promo{
+        width:calc(100% - 24px);
+        margin-top:12px;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:10px 14px;
+        padding:12px 14px;
+    }
+
+    .home-promo-titulo{
+        grid-column:1 / -1;
+        font-size:1.25rem;
     }
 
     .home-banner{

@@ -141,6 +141,7 @@ select.catalog-control{
 }
 
 .catalog-card-media{
+    position:relative;
     display:block;
     aspect-ratio:1 / 1.08;
     overflow:hidden;
@@ -197,6 +198,56 @@ select.catalog-control{
     font-size:1.3rem;
     font-weight:800;
     letter-spacing:-.01em;
+}
+
+/* Promoção (assets/js/promocao.js): preço normal riscado acima do promocional e selo da oferta sobre a foto */
+
+.preco-de{
+    display:block;
+    color:#8a8a8f;
+    font-family:"Manrope",sans-serif;
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:0;
+}
+
+.catalog-card .preco-de{
+    margin-top:12px;
+}
+
+.catalog-card .preco-de + strong{
+    margin-top:1px;
+}
+
+.selo-promocao{
+    position:absolute;
+    top:10px;
+    left:10px;
+    z-index:1;
+    display:flex;
+    flex-direction:column;
+    padding:5px 9px 6px;
+    border:1px solid rgba(198,160,106,.7);
+    border-radius:8px;
+    background:rgba(11,11,12,.88);
+    box-shadow:0 4px 12px rgba(0,0,0,.35);
+    color:#dcc39a;
+    font-family:"Barlow Condensed",sans-serif;
+    font-size:1rem;
+    font-weight:700;
+    line-height:1;
+    letter-spacing:.02em;
+    pointer-events:none;
+}
+
+.selo-promocao small{
+    margin-bottom:3px;
+    color:#c6a06a;
+    font-family:"Manrope",sans-serif;
+    font-size:.54rem;
+    font-weight:800;
+    letter-spacing:.14em;
+    text-transform:uppercase;
 }
 
 .catalog-empty{
@@ -302,6 +353,13 @@ select.catalog-control{
 
     .catalog-card h2{
         font-size:1.2rem;
+    }
+
+    .selo-promocao{
+        top:8px;
+        left:8px;
+        padding:4px 7px 5px;
+        font-size:.92rem;
     }
 
     .catalog-pagination{

@@ -1,6 +1,6 @@
 // Carrinho de compras: escolha de tamanho, carrinho lateral e finalização pelo WhatsApp.
 // Funciona em todas as páginas; os itens ficam salvos no navegador do cliente (localStorage).
-// Depende de util.js (escaparHtml) e componentes/card-camisa.js (botaoComprarHtml), carregados antes.
+// Depende de util.js, promocao.js e componentes/card-camisa.js (botaoComprarHtml, ofertaCamisa), carregados antes.
 (() => {
   // ---------- Configuração da loja (edite aqui) ----------
   const CONFIG = {
@@ -11,7 +11,8 @@
       feminina: ["P", "M", "G", "GG"],
       infantil: ["2 anos", "4 anos", "6 anos", "8 anos", "10 anos", "12 anos", "14 anos"]
     },
-    // Personalização com nome e número: valor somado a cada camisa personalizada (em centavos)
+    // Personalização com nome e número: valor normal somado a cada camisa personalizada (em centavos);
+    // durante a promoção vale o valor de promocao.js
     personalizacao: {
       preco: 3000,
       maxNome: 12,
@@ -30,15 +31,6 @@
 
   // ---------- Utilidades ----------
   const texto = (elemento) => (elemento ? elemento.textContent.replace(/\s+/g, " ").trim() : "");
-
-  // "R$ 1.119,90" → 111990 (centavos, para somar sem erro de arredondamento)
-  const paraCentavos = (preco) => {
-    const m = String(preco).replace(/\s/g, "").match(/(\d{1,3}(?:\.\d{3})*|\d+),(\d{2})/);
-    return m ? Number(m[1].replace(/\./g, "")) * 100 + Number(m[2]) : 0;
-  };
-
-  const formatoReal = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
-  const emReais = (centavos) => formatoReal.format(centavos / 100);
   const plural = (n, singular, pluralTexto) => `${n} ${n === 1 ? singular : pluralTexto}`;
 
   // ---------- Estado (salvo no navegador) ----------
@@ -67,16 +59,30 @@
     return `${item.id}|${item.tamanho}|${personalizacao}`;
   };
 
-  // Valor de uma unidade já com a personalização ("extra" guarda o acréscimo cobrado ao adicionar)
-  const precoUnitario = (item) => item.preco + (item.extra || 0);
+  // Modelo da camisa para a promoção; itens salvos antes de existir o campo são deduzidos pela liga ("Cruzeiro · Retrô")
+  const modeloItem = (item) => item.modelo || modeloCamisa({ tipo: item.tipo, retro: /retr[oô]/i.test(item.liga) });
+
+  // Os preços são calculados na hora (item.preco é o preço normal), então a promoção vale também para o que já estava no carrinho
+  const precoCamisa = (item) => precoPromocional(modeloItem(item), item.preco);
+  const precoExtra = (item) => (item.personalizacao ? precoPersonalizacao(CONFIG.personalizacao.preco) : 0);
+  const precoNormal = (item) => item.preco + (item.personalizacao ? CONFIG.personalizacao.preco : 0);
+  // Valor de uma unidade já com a personalização
+  const precoUnitario = (item) => precoCamisa(item) + precoExtra(item);
   const quantidadeTotal = () => itens.reduce((soma, item) => soma + item.qtd, 0);
-  const valorTotal = () => itens.reduce((soma, item) => soma + precoUnitario(item) * item.qtd, 0);
+  const subtotal = () => itens.reduce((soma, item) => soma + precoUnitario(item) * item.qtd, 0);
+
+  // Combo da promoção: só camisas modelo torcedor (masculinas e femininas); a personalização é cobrada à parte
+  const itensTorcedor = () => itens.filter((item) => modeloItem(item) === "torcedor");
+  const quantidadeTorcedor = () => itensTorcedor().reduce((soma, item) => soma + item.qtd, 0);
+  const descontoDoCombo = () => descontoCombo(itensTorcedor().flatMap((item) => Array(item.qtd).fill(precoCamisa(item))));
+  const valorTotal = () => subtotal() - descontoDoCombo();
+  const nomeCombo = () => `Combo ${promocao.torcedor.combo.quantidade} por ${emReais(promocao.torcedor.combo.preco)}`;
 
   // { nome: "SILVA", numero: "10" } → "SILVA · 10"
   const textoPersonalizacao = (personalizacao) => [personalizacao.nome, personalizacao.numero].filter(Boolean).join(" · ");
 
   const adicionar = (camisa, tamanho, qtd, personalizacao) => {
-    const novo = { ...camisa, tamanho, qtd, personalizacao, extra: personalizacao ? CONFIG.personalizacao.preco : 0 };
+    const novo = { ...camisa, tamanho, qtd, personalizacao };
     const existente = itens.find((item) => chaveItem(item) === chaveItem(novo));
 
     if (existente) {
@@ -120,7 +126,7 @@
       if (item.personalizacao) {
         const { nome, numero } = item.personalizacao;
         const detalhes = [nome && `nome ${nome}`, numero && `número ${numero}`].filter(Boolean).join(", ");
-        partes.push(`Personalização: ${detalhes} (+ ${emReais(item.extra)} por camisa)`);
+        partes.push(`Personalização: ${detalhes} (+ ${emReais(precoExtra(item))} por camisa)`);
       }
 
       // O link da foto ajuda a identificar modelos com o mesmo nome
@@ -131,11 +137,14 @@
       return partes.join("\n");
     });
 
+    const desconto = descontoDoCombo();
+
     return [
-      `Olá! Quero fazer este pedido pelo site da ${CONFIG.loja}:`,
+      `Olá! Quero fazer este pedido pelo site da ${CONFIG.loja}${promocaoAtiva() ? ` (promoção ${promocao.nome})` : ""}:`,
       "",
       linhas.join("\n\n"),
       "",
+      ...(desconto ? [`Subtotal: ${emReais(subtotal())}`, `${nomeCombo()}: - ${emReais(desconto)}`] : []),
       `*Total: ${emReais(valorTotal())}* (${plural(quantidadeTotal(), "camisa", "camisas")})`
     ].join("\n");
   };
@@ -143,20 +152,23 @@
   const linkWhatsApp = () => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(montarMensagem())}`;
 
   // ---------- Camisa a partir de um card ----------
-  // Cards com data-titulo, data-liga, data-preco, data-imagem, data-tipo e (opcional) data-tamanhos="P,M,G"
+  // Cards com data-titulo, data-liga, data-preco, data-imagem, data-tipo, data-modelo e (opcional) data-tamanhos="P,M,G"
   const lerCamisa = (card) => {
     const imagem = new URL(card.dataset.imagem, location.href).href;
+    const tipo = card.dataset.tipo || "adulto";
     const tamanhos = card.dataset.tamanhos
       ? card.dataset.tamanhos.split(",").map((t) => t.trim()).filter(Boolean)
-      : CONFIG.tamanhos[card.dataset.tipo] || CONFIG.tamanhos.adulto;
+      : CONFIG.tamanhos[tipo] || CONFIG.tamanhos.adulto;
 
     return {
       id: imagem,
       titulo: card.dataset.titulo,
       liga: card.dataset.liga || "",
+      // preço normal; o promocional é calculado na hora (precoCamisa)
       preco: paraCentavos(card.dataset.preco),
       imagem,
-      tipo: card.dataset.tipo || "adulto",
+      tipo,
+      modelo: card.dataset.modelo || modeloCamisa({ tipo, retro: false }),
       tamanhos
     };
   };
@@ -169,8 +181,8 @@
     return aba === "infantil" || aba === "kids" ? "infantil" : "adulto";
   };
 
-  // As páginas dos clubes têm os cards escritos direto no HTML; aqui eles ganham os dados e o botão Comprar
-  // (botaoComprarHtml vem de componentes/card-camisa.js)
+  // As páginas dos clubes têm os cards escritos direto no HTML; aqui eles ganham os dados, o preço da promoção e o botão Comprar
+  // (botaoComprarHtml e ofertaCamisa vêm de componentes/card-camisa.js)
   const prepararCardsDosClubes = () => {
     const clube = texto(document.querySelector("h1"));
 
@@ -190,11 +202,19 @@
       card.dataset.preco = texto(card.querySelector(".preco"));
       card.dataset.imagem = card.querySelector("img").getAttribute("src");
       card.dataset.tipo = tipoPorAba(idAba);
+      card.dataset.modelo = modeloCamisa({ tipo: card.dataset.tipo, retro: idAba === "retro" });
 
       if (tamanhos) {
         card.dataset.tamanhos = texto(tamanhos).split("•").map((t) => t.trim()).join(",");
       }
 
+      const oferta = ofertaCamisa(card.dataset.preco, card.dataset.modelo);
+
+      if (oferta.precoDe) {
+        card.querySelector(".preco").innerHTML = `<s class="preco-de">${oferta.precoDe}</s>${oferta.preco}`;
+      }
+
+      card.querySelector("img").insertAdjacentHTML("afterend", oferta.seloHtml);
       card.querySelector(".produto-info").insertAdjacentHTML("beforeend", botaoComprarHtml);
     });
   };
@@ -263,6 +283,8 @@
   let escolha, painel, aviso, camisaEscolhida = null, timerAviso = null;
 
   const montarEscolha = () => {
+    const personalizacaoNormal = CONFIG.personalizacao.preco;
+    const personalizacaoAtual = precoPersonalizacao(personalizacaoNormal);
     escolha = document.createElement("div");
     escolha.className = "carrinho-escolha";
     escolha.hidden = true;
@@ -275,8 +297,10 @@
           <span class="carrinho-escolha-liga"></span>
           <h2 id="carrinho-escolha-titulo"></h2>
           <div class="carrinho-escolha-valor">
+            <s class="carrinho-escolha-de" hidden></s>
             <strong class="carrinho-escolha-preco"></strong>
             <span class="carrinho-escolha-extra" hidden></span>
+            <span class="carrinho-escolha-promo" hidden></span>
           </div>
 
           <fieldset class="carrinho-tamanhos">
@@ -291,7 +315,7 @@
               <span class="carrinho-opcao-caixa" aria-hidden="true"></span>
               <span class="carrinho-opcao-texto">
                 <strong>Personalizar com nome e número</strong>
-                <small>+ ${emReais(CONFIG.personalizacao.preco)} por camisa</small>
+                <small>+ ${emReais(personalizacaoAtual)} por camisa${personalizacaoAtual < personalizacaoNormal ? ` <s>${emReais(personalizacaoNormal)}</s>` : ""}</small>
               </span>
             </label>
             <div class="carrinho-personalizar-campos" hidden>
@@ -403,15 +427,21 @@
     });
   };
 
-  // Mostra o preço com o acréscimo quando a personalização está marcada
+  // Mostra o preço com a promoção e com o acréscimo quando a personalização está marcada
   const atualizarPrecoEscolha = () => {
-    const personalizado = escolha.querySelector("input[name='personalizar']").checked;
-    const extra = personalizado ? CONFIG.personalizacao.preco : 0;
+    const item = { ...camisaEscolhida, personalizacao: escolha.querySelector("input[name='personalizar']").checked };
     const detalhe = escolha.querySelector(".carrinho-escolha-extra");
+    const de = escolha.querySelector(".carrinho-escolha-de");
+    const promo = escolha.querySelector(".carrinho-escolha-promo");
 
-    escolha.querySelector(".carrinho-escolha-preco").textContent = emReais(camisaEscolhida.preco + extra);
-    detalhe.hidden = !personalizado;
-    detalhe.textContent = `${emReais(camisaEscolhida.preco)} + ${emReais(extra)} de personalização`;
+    escolha.querySelector(".carrinho-escolha-preco").textContent = emReais(precoUnitario(item));
+    de.hidden = precoNormal(item) <= precoUnitario(item);
+    de.textContent = emReais(precoNormal(item));
+    detalhe.hidden = !item.personalizacao;
+    detalhe.textContent = `${emReais(precoCamisa(item))} + ${emReais(precoExtra(item))} de personalização`;
+    // O combo só aparece no carrinho; aqui fica o aviso
+    promo.hidden = !promocaoAtiva() || modeloItem(item) !== "torcedor";
+    promo.textContent = `${promocao.nome}: leve ${promocao.torcedor.combo.quantidade} por ${emReais(promocao.torcedor.combo.preco)} (masculinas e femininas, desconto no carrinho)`;
   };
 
   const abrirEscolha = (camisa) => {
@@ -465,6 +495,11 @@
         </div>
 
         <footer class="carrinho-rodape">
+          <p class="carrinho-dica" hidden></p>
+          <dl class="carrinho-desconto" hidden>
+            <div><dt>Subtotal</dt><dd class="carrinho-subtotal"></dd></div>
+            <div class="carrinho-desconto-combo"><dt></dt><dd></dd></div>
+          </dl>
           <div class="carrinho-total">
             <span>Total</span>
             <strong></strong>
@@ -519,6 +554,19 @@
     painel.querySelector(".carrinho-total strong").textContent = emReais(valorTotal());
     painel.querySelector(".carrinho-finalizar").href = vazio ? "#" : linkWhatsApp();
 
+    const desconto = descontoDoCombo();
+    painel.querySelector(".carrinho-desconto").hidden = !desconto;
+    painel.querySelector(".carrinho-subtotal").textContent = emReais(subtotal());
+    painel.querySelector(".carrinho-desconto-combo dt").textContent = nomeCombo();
+    painel.querySelector(".carrinho-desconto-combo dd").textContent = `− ${emReais(desconto)}`;
+
+    // Com um número ímpar de camisas torcedor, avisa quanto falta para fechar o próximo combo
+    const { quantidade, preco } = promocao.torcedor.combo;
+    const sobra = quantidadeTorcedor() % quantidade;
+    const dica = painel.querySelector(".carrinho-dica");
+    dica.hidden = !promocaoAtiva() || sobra === 0;
+    dica.textContent = `Adicione mais ${plural(quantidade - sobra, "camisa torcedor ou feminina", "camisas torcedor ou femininas")} e leve ${quantidade} por ${emReais(preco)}.`;
+
     // redesenha a lista preservando o botão que estava com foco
     const focado = document.activeElement && document.activeElement.closest("[data-chave]")
       ? [document.activeElement.closest("[data-chave]").dataset.chave, document.activeElement.dataset.acao]
@@ -529,8 +577,8 @@
         <img src="${escaparHtml(item.imagem)}" alt="" loading="lazy">
         <div class="carrinho-item-info">
           <strong>${escaparHtml(item.titulo)}</strong>
-          <span>Tamanho ${escaparHtml(item.tamanho)} · ${emReais(precoUnitario(item))}</span>
-          ${item.personalizacao ? `<span class="carrinho-item-personalizacao">Personalizada: ${escaparHtml(textoPersonalizacao(item.personalizacao))} <span class="carrinho-sem-quebra">(+ ${emReais(item.extra)})</span></span>` : ""}
+          <span>Tamanho ${escaparHtml(item.tamanho)} · ${precoNormal(item) > precoUnitario(item) ? `<s>${emReais(precoNormal(item))}</s> ` : ""}${emReais(precoUnitario(item))}</span>
+          ${item.personalizacao ? `<span class="carrinho-item-personalizacao">Personalizada: ${escaparHtml(textoPersonalizacao(item.personalizacao))} <span class="carrinho-sem-quebra">(+ ${emReais(precoExtra(item))})</span></span>` : ""}
           <div class="carrinho-item-acoes">
             <div class="carrinho-qtd carrinho-qtd-pequena" role="group" aria-label="Quantidade de ${escaparHtml(item.titulo)}">
               <button type="button" data-acao="menos" aria-label="Diminuir">−</button>

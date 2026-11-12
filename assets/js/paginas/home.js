@@ -46,6 +46,7 @@ const createHomeProduct = ({ category, subcategory = "", tab = "", retro = false
   const normalizedTeam = normalizarTexto(team);
   // Modelos atuais: fora retrô, feminina e infantil
   const current = !retro && !["feminina", "infantil", "kids"].includes(tab);
+  const tipo = tab === "feminina" ? "feminina" : ["infantil", "kids"].includes(tab) ? "infantil" : "adulto";
 
   return {
     category,
@@ -58,7 +59,9 @@ const createHomeProduct = ({ category, subcategory = "", tab = "", retro = false
     current,
     home: current && /\bhome\b/.test(normalizedTitle) && !/goleiro/.test(normalizedTitle),
     // grade de tamanhos usada no carrinho
-    tipo: tab === "feminina" ? "feminina" : ["infantil", "kids"].includes(tab) ? "infantil" : "adulto",
+    tipo,
+    // regra da promoção (torcedor, retrô ou infantil)
+    modelo: modeloCamisa({ tipo, retro }),
     league,
     title,
     image,
@@ -272,7 +275,8 @@ const createHomeCard = (product) => criarCardCamisa({
   liga: product.league,
   descricao: product.description,
   preco: product.price,
-  tipo: product.tipo
+  tipo: product.tipo,
+  modelo: product.modelo
 });
 
 const renderHome = () => {
@@ -476,6 +480,27 @@ const setupHomeClubs = () => {
   window.addEventListener("resize", updateHomeClubsScroll);
 };
 
+// Faixa com as regras da promoção (assets/js/promocao.js); fica escondida quando não há promoção
+const renderHomePromo = () => {
+  if (!promocaoAtiva()) {
+    return;
+  }
+
+  const { torcedor, retro, infantil, personalizacao } = promocao;
+  const ofertas = [
+    ["Torcedor e feminina", `1 por ${emReaisCurto(torcedor.preco)} · ${torcedor.combo.quantidade} por ${emReaisCurto(torcedor.combo.preco)}`],
+    ["Retrô", `${emReaisCurto(retro.desconto)} OFF`],
+    ["Conjunto kids", `Por ${emReaisCurto(infantil.preco)}`],
+    ["Nome + número", `+ ${emReaisCurto(personalizacao)}`]
+  ];
+  const faixa = document.getElementById("home-promo");
+
+  faixa.innerHTML = `<strong class="home-promo-titulo">${escaparHtml(promocao.nome)}</strong>${ofertas.map(([rotulo, valor]) => `
+    <span class="home-promo-item"><small>${escaparHtml(rotulo)}</small><strong>${escaparHtml(valor)}</strong></span>
+  `).join("")}`;
+  faixa.hidden = false;
+};
+
 const scrollToCatalog = () => {
   document.getElementById("catalogo").scrollIntoView({ behavior: "smooth", block: "start" });
 };
@@ -512,6 +537,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   setupHomeMenu();
   setupHomeClubs();
+  renderHomePromo();
 
   document.querySelectorAll(".home-category").forEach((button) => {
     button.addEventListener("click", () => {

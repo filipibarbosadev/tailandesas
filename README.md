@@ -22,7 +22,8 @@ assets/
     home.css                Página inicial
     carrinho.css            Botão Comprar, escolha de tamanho, carrinho e aviso
   js/
-    util.js                 Funções comuns (normalizar texto, escapar HTML)
+    util.js                 Funções comuns (normalizar texto, escapar HTML, valores em reais)
+    promocao.js             Regras da promoção em vigor (preços promocionais, combo, data de término)
     componentes/
       card-camisa.js        Card de camisa (home e catálogos)
       carrinho.js           Carrinho de compras e envio pelo WhatsApp
@@ -60,7 +61,9 @@ O script atualiza as listas em `assets/js/dados/` e mostra quantas camisas entra
 
 **Tamanhos, personalização (valor e limite de letras/dígitos), número do WhatsApp e nome da loja:** no início de `assets/js/componentes/carrinho.js` (`CONFIG`). O valor da personalização fica em centavos (`3000` = R$ 30,00).
 
-**Preço das retrô internacionais:** `retroPrice` em `assets/js/dados/retro.js`. Os demais preços estão em cada card (clubes) ou no padrão de `criarCardCamisa` (R$ 119,90).
+**Preço das retrô internacionais:** `retroPrice` em `assets/js/dados/retro.js`. Os demais preços estão em cada card (clubes) ou no padrão de `criarCardCamisa` (R$ 119,90). Esses são os preços normais; a promoção é aplicada por cima deles.
+
+**Promoção (ex.: Black November):** tudo em `assets/js/promocao.js`. Os cards mostram o preço normal riscado, o promocional e um selo da oferta; o carrinho aplica o combo (2 camisas torcedor ou femininas pelo preço do combo; retrô e kids ficam fora) e a mensagem do WhatsApp sai com o desconto. A home ganha uma faixa com as regras. Quando passa a data de `fim`, o site volta sozinho aos preços normais; para encerrar antes ou prorrogar, mude `fim`. O modelo de cada camisa vem da aba (Torcedor e Feminina = torcedor, Retrô = retrô, Infantil/Kids = infantil); Europeus, Seleções e Resto do Mundo contam como torcedor.
 
 **Ordem de "Mais relevantes":** lista `homeHighlightImages` (camisas específicas, no topo, nesta ordem) e depois `homeBestSellerTeams` (por time) em `assets/js/paginas/home.js`.
 

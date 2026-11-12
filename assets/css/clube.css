@@ -134,6 +134,12 @@
     box-shadow:0 18px 36px rgba(0,0,0,.32);
 }
 
+/* a foto fica dentro de um link; o selo da promoção se posiciona sobre ela */
+.brazilian-club-page .produto-card > a{
+    position:relative;
+    display:block;
+}
+
 .brazilian-club-page .produto-img{
     width:100%;
     height:auto;

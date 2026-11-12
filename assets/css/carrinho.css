@@ -433,6 +433,31 @@ body.com-carrinho-flutuante{
     display:none;
 }
 
+/* Promoção: preço normal riscado e aviso do combo (assets/js/promocao.js) */
+.carrinho-escolha-de{
+    color:#8a8a8f;
+    font-size:.82rem;
+    font-weight:700;
+}
+
+.carrinho-escolha-promo{
+    margin-top:4px;
+    color:#dcc39a;
+    font-size:.76rem;
+    font-weight:700;
+    line-height:1.4;
+}
+
+.carrinho-escolha-de[hidden],
+.carrinho-escolha-promo[hidden]{
+    display:none;
+}
+
+.carrinho-opcao-texto small s,
+.carrinho-item-info s{
+    color:#8a8a8f;
+}
+
 .carrinho-personalizar{
     display:flex;
     flex-direction:column;
@@ -778,6 +803,54 @@ body.com-carrinho-flutuante{
     padding:16px 18px 20px;
     border-top:1px solid #1f1f22;
     background:#0f0f11;
+}
+
+/* Combo da promoção: dica quando falta camisa para fechar o par, subtotal e desconto */
+.carrinho-dica{
+    margin:0;
+    padding:9px 12px;
+    border:1px dashed rgba(198,160,106,.45);
+    border-radius:10px;
+    background:#1b1711;
+    color:#dcc39a;
+    font-size:.76rem;
+    font-weight:700;
+    line-height:1.4;
+}
+
+.carrinho-desconto{
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    font-size:.82rem;
+    font-weight:700;
+}
+
+.carrinho-desconto div{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.carrinho-desconto dt{
+    color:#a3a3a8;
+}
+
+.carrinho-desconto dd{
+    margin:0;
+    color:#dcdcdf;
+    white-space:nowrap;
+}
+
+.carrinho-desconto .carrinho-desconto-combo dt,
+.carrinho-desconto .carrinho-desconto-combo dd{
+    color:#d9b77f;
+}
+
+.carrinho-dica[hidden],
+.carrinho-desconto[hidden]{
+    display:none;
 }
 
 .carrinho-total{
