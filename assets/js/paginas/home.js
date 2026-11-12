@@ -501,6 +501,22 @@ const renderHomePromo = () => {
   faixa.hidden = false;
 };
 
+// O banner da campanha fica direto no index.html (assim não baixa dois banners durante a promoção);
+// passado o fim, volta ao banner normal guardado em data-banner-normal
+const setupHomeBanner = () => {
+  if (promocaoAtiva()) {
+    return;
+  }
+
+  document.querySelectorAll(".home-banner [data-banner-normal]").forEach((element) => {
+    element[element.tagName === "SOURCE" ? "srcset" : "src"] = element.dataset.bannerNormal;
+
+    if (element.dataset.altNormal) {
+      element.alt = element.dataset.altNormal;
+    }
+  });
+};
+
 const scrollToCatalog = () => {
   document.getElementById("catalogo").scrollIntoView({ behavior: "smooth", block: "start" });
 };
@@ -537,6 +553,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   setupHomeMenu();
   setupHomeClubs();
+  setupHomeBanner();
   renderHomePromo();
 
   document.querySelectorAll(".home-category").forEach((button) => {

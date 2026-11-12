@@ -85,10 +85,11 @@
         <!-- Regras da promoção em vigor; preenchida pelo home.js a partir de assets/js/promocao.js e escondida fora dela -->
         <aside class="home-promo" id="home-promo" aria-label="Promoção" hidden></aside>
 
+        <!-- Banner da campanha (Black November). Passado o fim da promoção (assets/js/promocao.js), o home.js troca pelo banner normal indicado em data-banner-normal -->
         <section class="home-banner">
             <picture>
-                <source media="(max-width: 767px)" srcset="assets/img/banners/banner%2002.png" width="941" height="1672">
-                <img src="assets/img/banners/banner%2001.png" width="1944" height="809" alt="Mantos FC: vista sua paixão. Clubes do Brasil e do mundo, seleções, retrô e muito mais" fetchpriority="high">
+                <source media="(max-width: 767px)" srcset="assets/img/banners/banner%2002%20black%20november.png" width="1045" height="1505" data-banner-normal="assets/img/banners/banner%2002.png">
+                <img src="assets/img/banners/banner%2001%20black%20november.png" width="1942" height="809" alt="Mantos FC Black November: vista sua paixão. Clubes do Brasil e do mundo, seleções, retrô e muito mais" fetchpriority="high" data-banner-normal="assets/img/banners/banner%2001.png" data-alt-normal="Mantos FC: vista sua paixão. Clubes do Brasil e do mundo, seleções, retrô e muito mais">
             </picture>
         </section>
 
